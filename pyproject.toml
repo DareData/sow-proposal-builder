@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "sow-proposal-builder"
+version = "0.1.0"
+description = "A generative proposal builder to generate quotation proposals for clients fast"
+authors = ["Roberto Álvarez <roberto.alvarez@daredata.ai>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+streamlit = "^1.45.1"
+pyperclip = "^1.9.0"
+streamlit-extras = "^0.7.1"
+pydantic = "^2.11.4"
+pydantic-settings = "^2.9.1"
+openai = "^1.79.0"
+uvicorn = "^0.34.2"
+fastapi = "^0.115.12"
+
+
+[tool.poetry.group.dev.dependencies]
+notebook = "^7.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

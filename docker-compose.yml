@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Frontend Streamlit Application
+  proposal-builder:
+    build: 
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: proposal-builder-frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./src:/app/src
+    command: streamlit run /app/src/app.py --server.port=8501 --server.address=0.0.0.0
+    environment:
+      - PYTHONPATH=/app
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - api
+
+  # Backend FastAPI Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: proposal-builder-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+    command: uvicorn src.api:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - PYTHONPATH=/app
+    env_file:
+      - .env
+    restart: unless-stopped

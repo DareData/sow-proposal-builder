@@ -1,0 +1,42 @@
+Here you should create a Gant Chart in mermaid with phases and milestones well defined in the gant to be delivered. Use this as the type of chart to create: 
+
+```
+gantt
+
+title Project Timeline (in weeks)
+dateFormat Q
+axisFormat %W
+tickInterval 1week
+todayMarker off
+
+section SETUP: Build
+Desenvolvimento GenAI e Integração Gen-OS :active, a1, 2025-01-05, 8w
+Entrada em Produção :milestone, a2, after a1, 0w
+
+section SETUP: Tuning
+Ajustes e Otimização :active, b1, after a1, 4w
+Validação Final e Arranque Operação Contínua :milestone, c1, after b1, 0w
+
+section RUN
+Operação :done, d1, after c1, 2w
+```
+
+Notes for the Gantt: 
+section Run should have 2w (simulating the RUN starting)
+Axisformat should be always axisFormat %W
+Start Date should be always 2025-01-05
+
+
+
+Still in this section you should create bullet points with paragraphs (aprox. 4 lines each)  describing: i) each phase name and objective; ii)  what profiles will work / will be involved involved in them. iii) duration and impact;  In this paragraph you should not mention any pricing or rates.
+
+
+Phases and Project Milestones
+
+
+[Milestones will be used throughout the project to evaluate its execution - you have to define milestones that should be the source of truth to evaluate project execution and risks. 
+
+Create a TABLE with EACH Phase with the following columns: Phase name, Description, Duration, Starting Date
+Add the project milestones to this table as specific rows
+
+You should consider maximum 4 milestones]

@@ -1,0 +1,25 @@
+Key stakeholders
+
+Name of the main contacts if unavailable use the word “Sponsor” whatever is the language (Client company)
+EXAMPLE: The role is to support, internally sponsor and grant a mandate to daredata to move forward the project
+Main Account from DareData (typically a Principal from DareData)
+EXAMPLE: The role is to help gather high level requirements and scoping, helping with stakeholder management and ensuring the project is flowing as expected.
+
+
+DareData Team 
+
+Describe the team using everyone involved in the project. Include always: 
+1 Principal 
+1 Tech Specialist
+All other people involved.
+Say what each of them will be responsible for and say that we ensure that virtually every technical decision will get a review from a Partner or Senior Engineer.
+
+Examples: 
+- 1 Tech Specialist
+    EXAMPLE: The role is to be present with the business and help to gather requirements for technical solutions. The senior persons from DareData will be responsible for the quality of the technical work and will ensure that it follows best practices, along with being the main point of contact with possible business stakeholders. Both senior data engineers will also code and help develop the entire solution.
+    OTHER EXAMPLE: The role is to conduct interviews with stakeholders, design improvements to the datahub, and help gather requirements for future expected technical solutions. This person will be responsible for the quality of the work and architecture delivered in the final report and will ensure that it follows best practices, along with being the main point of contact with possible business stakeholders.
+
+- X DareData Engineers
+    EXAMPLE: The role is to implement requirements and work directly in the project. Engineers/Scientists are expected to code, test and implement the architecture as well as gather low level business requirements.
+
+

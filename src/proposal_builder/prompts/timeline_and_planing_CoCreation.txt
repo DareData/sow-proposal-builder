@@ -1,0 +1,24 @@
+Here you should create a Gant Chart in mermaid with the persons entering and the project duration. Use this as the type of chart to create: 
+
+```
+gantt
+
+title Project Timeline (in weeks)
+dateFormat Q
+axisFormat %W
+tickInterval 1week
+todayMarker off
+
+section Start
+First Team /Squad Start :milestone, a1, 0w
+Topic to be developed :active, a1, 2025-01-05, Xw
+
+Phases and Project Milestones
+
+
+[Milestones will be used throughout the project to evaluate its execution - you have to define milestones that should be the source of truth to evaluate project execution and risks. 
+
+Create a TABLE with EACH Phase with the following columns: Phase name, Description, Duration, Starting Date
+Add the project milestones to this table as specific rows
+
+You should consider maximum 4 milestones]

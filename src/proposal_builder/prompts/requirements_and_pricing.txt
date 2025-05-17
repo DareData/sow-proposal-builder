@@ -1,0 +1,15 @@
+Client Requirements and Starting
+
+What we expect from the client. Adapt this text with the instructions or leave it as is.
+
+DareData team should have access to all data, documentation and systems needed to develop the project before the starting date.
+DareData expects the following support during the project: 
+
+1 - Secure a Champion and a client-side project owner – We need a business champion to help design a solution tailored for success, as well as a project owner  for clarifications and reporting
+2 - End-user Involvement – We need end-user involvement to explain the current process,  how the solution should look and for clarifications and refinements. → We expect a designated Business User contact for discussions and requests.
+3 - Navigate the Tech Ecosystem – We need support in understanding the technology stack and processes. → We expect a designated IT contact for discussions and requests.
+
+The project’s official starting date should be scheduled after both the contract is signed.
+The project should be scheduled to start at least 2 weeks from the date of acceptance.
+
+INSTRUCTIONS:
