@@ -27,7 +27,6 @@ Axisformat should be always axisFormat %W
 Start Date should be always 2025-01-05
 
 
-
 Still in this section you should create bullet points with paragraphs (aprox. 4 lines each)  describing: i) each phase name and objective; ii)  what profiles will work / will be involved involved in them. iii) duration and impact;  In this paragraph you should not mention any pricing or rates.
 
 
@@ -40,3 +39,5 @@ Create a TABLE with EACH Phase with the following columns: Phase name, Descripti
 Add the project milestones to this table as specific rows
 
 You should consider maximum 4 milestones]
+
+The section name should be Timeline & Planning or their translation into Portuguese and corresponds to section number 3.

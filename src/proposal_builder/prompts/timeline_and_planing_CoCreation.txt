@@ -22,3 +22,5 @@ Create a TABLE with EACH Phase with the following columns: Phase name, Descripti
 Add the project milestones to this table as specific rows
 
 You should consider maximum 4 milestones]
+
+The section name should be Timeline & Planning or their translation into Portuguese and corresponds to section number 3.

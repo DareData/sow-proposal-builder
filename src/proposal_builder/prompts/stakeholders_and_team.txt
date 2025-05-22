@@ -23,3 +23,4 @@ Examples:
     EXAMPLE: The role is to implement requirements and work directly in the project. Engineers/Scientists are expected to code, test and implement the architecture as well as gather low level business requirements.
 
 
+Section names should be Key Stakeholders and DareData Team (or their translation into Portuguese) and correspond to sections number 4 and 5.

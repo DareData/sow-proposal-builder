@@ -218,6 +218,20 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         client_expectations = st.text_area("**What we expect from Client**", key="client_expectations")
         
         special_conditions = st.text_area("**Special Financial Conditions**", key="special_conditions")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            mlops_guidelines = st.selectbox(
+                "**MLOps Guidelines**",
+                options=["Yes", "No"],
+                key="mlops_guidelines"
+            )
+        with col2:
+            agentic_archetypes_guidelines = st.selectbox(
+                "**Agentic Archetype Guidelines**",
+                options=["Yes", "No"],
+                key="agentic_archetypes_guidelines"
+            )
         
         submitted = st.form_submit_button("Generate Proposal")
     
@@ -236,7 +250,9 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "client_stakeholders": client_stakeholders,
             "daredata_team": daredata_team,
             "client_expectations": client_expectations,
-            "special_conditions": special_conditions
+            "special_conditions": special_conditions,
+            "mlops_guidelines": mlops_guidelines,
+            "agentic_archetypes_guidelines": agentic_archetypes_guidelines,
         }
     
     return proposal_data, submitted

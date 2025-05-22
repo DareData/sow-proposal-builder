@@ -1,2 +1,4 @@
-Here you should write a paragraph description of the expected work to be done based on the following created information
+Here, you will write an executive summary based on the description of the proposal.
+Be less technical, more business-oriented in your descriptions. 
 
+Section name should be Executive Summary or Sumário Executivo, depending on the language and corresponds to section number 1. 
