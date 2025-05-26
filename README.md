@@ -46,7 +46,7 @@ poetry install
 3. Start the backend API
 
 ```bash
-poetry run streamlit run src/api.py
+poetry run python src/api.py
 ```
 
 4. Run the Frontend:
