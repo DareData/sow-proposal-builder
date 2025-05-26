@@ -12,7 +12,7 @@ A beautiful Streamlit application for creating project proposals with a consiste
 
 ```
 .
-├── app/
+├── src/
 │   └── app.py                  # Streamlit application
 ├── docker-compose.yml          # Docker Compose configuration
 ├── Dockerfile                  # Docker build instructions
@@ -43,11 +43,16 @@ docker-compose up -d
 poetry install
 ```
 
-3. Run the application:
+3. Start the backend API
 
 ```bash
-cd app
-poetry run streamlit run app.py
+poetry run streamlit run src/api.py
+```
+
+4. Run the Frontend:
+
+```bash
+poetry run streamlit run src/app.py
 ```
 
 ## Fields Included

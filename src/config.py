@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings
 from typing import Optional
 from pydantic import validator
-from src.proposal_builder.helpers import read_prompt
+from proposal_builder.helpers import read_prompt
 from pathlib import Path
 
 
@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str
     OPENAI_API_VERSION: str
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT: str
+    API_URL: str
 
     class Config:
         env_file = ".env"

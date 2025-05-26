@@ -1,7 +1,7 @@
 import json
-from src.config import settings, prompts
-from src.proposal_builder.helpers import read_prompt
-from src.proposal_builder.llm import create_llm
+from config import settings, prompts
+from proposal_builder.helpers import read_prompt
+from proposal_builder.llm import create_llm
 
 LLM = create_llm(settings)
 
@@ -135,12 +135,12 @@ def generate_work_agreement(data: dict) -> str:
     work_agreement_dict_en = {
         "Closed Project": "Payment of 30% on acceptance of the proposal, payment of 70% at the end",
         "Gen-OS": "Setup: Payment of 30% on acceptance of the proposal, payment of 70% at the end\n\nRun: Monthly Payment / Annual Payment (5% discount)",
-        "Co-creation": "Payment based on work timesheets",
+        "Co-Creation": "Payment based on work timesheets",
     }
     work_agreement_dict_pt = {
         "Closed Project": "Pagamento do 30% aquando da aceitação da proposta, 70% no final",
         "Gen-OS": "Setup: 30% aquando da aceitação da proposta, 70% no final\n\nRun: Pagamentos Mensais/ Anuais (5% desconto)",
-        "Co-creation": "Pagamento com base em timesheets",
+        "Co-Creation": "Pagamento com base em timesheets",
     }
 
     text_pt = "\n\n".join([
