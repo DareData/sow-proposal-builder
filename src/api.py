@@ -6,7 +6,7 @@ from typing import Dict, Optional
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from src.proposal_builder.agent import generate_proposal
+from proposal_builder.agent import generate_proposal
 
 app = FastAPI(title="Proposal Builder API", description="Async API for proposal generation")
 
@@ -46,13 +46,17 @@ class ProposalResponse(BaseModel):
 @app.post("/proposals/", response_model=ProposalResponse)
 async def create_proposal(proposal: ProposalRequest):
     # Create proposal data dictionary
-    proposal_data = proposal.dict()
+    proposal_data = proposal.model_dump()
     markdown = generate_proposal(proposal_data)
     
     return ProposalResponse(
         markdown=markdown,
     )
 
+
+@app.get("/health")
+async def health_check():
+    return {"status: ok"}
 
 
 if __name__ == "__main__":

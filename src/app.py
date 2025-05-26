@@ -4,15 +4,16 @@ Handles the Streamlit UI and integrates with the simplified API.
 """
 import requests
 import streamlit as st
-from src.streamlit_helpers import (
+from streamlit_helpers import (
     setup_page_config,
     apply_styles,
     render_proposal_form,
     render_footer
 )
+from config import settings
 
 # API configuration
-API_URL = "http://api:8000"  # Docker service name
+API_URL = settings.API_URL
 
 def main():
     """Main application function"""

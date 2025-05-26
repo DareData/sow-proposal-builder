@@ -1,13 +1,13 @@
 import json
-from src.config import settings, prompts
-from src.proposal_builder.helpers import read_prompt
-from src.proposal_builder.llm import create_llm
+from config import settings, prompts
+from proposal_builder.helpers import read_prompt
+from proposal_builder.llm import create_llm
 
 LLM = create_llm(settings)
 
 def generate_proposal(data: dict) -> str:
     project_desc = generate_project_description(data)
-    timeline_planing = generate_timeline_planing(data)
+    timeline_planning = generate_timeline_planning(data)
     stakeholders_and_team = generate_stakeholders_and_team(data)
     requirements = generate_requirements(data)
     work_agreement = generate_work_agreement(data)
@@ -16,7 +16,7 @@ def generate_proposal(data: dict) -> str:
     proposal = "\n".join([
         exc_summ,
         project_desc,
-        timeline_planing,
+        timeline_planning,
         stakeholders_and_team,
         requirements,
         work_agreement
@@ -75,16 +75,16 @@ def generate_project_description(data):
     
     return final_response
 
-def generate_timeline_planing(data: dict) -> str:
+def generate_timeline_planning(data: dict) -> str:
     fields = [
         "language",
         "planning",
     ]
     selected_data = {k: v for k, v in data.items() if k in fields}
     type_of_project_dict = {
-        "Gen-OS": prompts.TIMELINE_AND_PLANING_GENOS,
-        "Closed Project": prompts.TIMELINE_AND_PLANING_CLOSED_PROJECT,
-        "Co-Creation": prompts.TIMELINE_AND_PLANING_COCREATION
+        "Gen-OS": prompts.TIMELINE_AND_PLANNING_GENOS,
+        "Closed Project": prompts.TIMELINE_AND_PLANNING_CLOSED_PROJECT,
+        "Co-Creation": prompts.TIMELINE_AND_PLANNING_COCREATION
     }
     messages = [
         {"role": "system", "content": prompts.SYSTEM_PROMPT},
@@ -135,12 +135,12 @@ def generate_work_agreement(data: dict) -> str:
     work_agreement_dict_en = {
         "Closed Project": "Payment of 30% on acceptance of the proposal, payment of 70% at the end",
         "Gen-OS": "Setup: Payment of 30% on acceptance of the proposal, payment of 70% at the end\n\nRun: Monthly Payment / Annual Payment (5% discount)",
-        "Co-creation": "Payment based on work timesheets",
+        "Co-Creation": "Payment based on work timesheets",
     }
     work_agreement_dict_pt = {
         "Closed Project": "Pagamento do 30% aquando da aceitação da proposta, 70% no final",
         "Gen-OS": "Setup: 30% aquando da aceitação da proposta, 70% no final\n\nRun: Pagamentos Mensais/ Anuais (5% desconto)",
-        "Co-creation": "Pagamento com base em timesheets",
+        "Co-Creation": "Pagamento com base em timesheets",
     }
 
     text_pt = "\n\n".join([
@@ -182,7 +182,7 @@ def generate_work_agreement(data: dict) -> str:
         "VAT Number: PT 515362166",
         "Address: AV FONTES PEREIRA MELO , 31 5 C LISBOA 1050-117 LISBOA"
     ])
-    
+
     if data["language"] == "English":
         return text_en
     if data["language"] == "Portuguese":
