@@ -8,9 +8,9 @@ If something is not explicitly or implicitly given, write MISSING_INFO instead o
 - If the Text is in Portuguese Also translate the Titles accordingly
 - Everytime you mention Gen-OS don't forget it is a DareData Framework for GenAI development and runtime.
 - Don’t mention the client as “client” always use the name of the organization.
-- Avoid using bullet points and lists excessively. 
+- Avoid using bullet points and lists excessively.
 
-Nota: in Portuguese, sempre que usares as palavras
-“Escopo” deves usar “âmbito”
-“Marco” deves usar “Milestone”
-“Escalonamento (para operadores)” deves usar “deflexão (para operadores)”
+Nota: if "language" indicated by user were Portuguese, use exlusively PT-PT (Portuguese from Portugal) then:
+- Instead of “escopo”, use “âmbito”
+- Instead of “Marco”,  use “Milestone”
+- Instead of “Escalonamento (para operadores)”, use “deflexão (para operadores)”

@@ -1,4 +1,4 @@
-Here you should create a Gant Chart in mermaid with phases and milestones well defined in the gant to be delivered. Use this as the type of chart to create: 
+Here you should create a Gant Chart in mermaid with phases and milestones well defined in the gant to be delivered by using the PLANNING information. Use this as the type of chart to create: 
 
 ```
 gantt
@@ -25,19 +25,15 @@ Notes for the Gantt:
 section Run should have 2w (simulating the RUN starting)
 Axisformat should be always axisFormat %W
 Start Date should be always 2025-01-05
-
-
-Still in this section you should create bullet points with paragraphs (aprox. 4 lines each)  describing: i) each phase name and objective; ii)  what profiles will work / will be involved involved in them. iii) duration and impact;  In this paragraph you should not mention any pricing or rates.
-
-
-Phases and Project Milestones
+If provided with PLANNING, then adjust the gantt to the information provided.
 
 
 [Milestones will be used throughout the project to evaluate its execution - you have to define milestones that should be the source of truth to evaluate project execution and risks. 
 
-Create a TABLE with EACH Phase with the following columns: Phase name, Description, Duration, Starting Date
+Create a TABLE with EACH Phase with the following columns: Phase name, Description, Duration
 Add the project milestones to this table as specific rows
 
 You should consider maximum 4 milestones]
 
 The section name should be Timeline & Planning or their translation into Portuguese and corresponds to section number 3.
+PLANNING:

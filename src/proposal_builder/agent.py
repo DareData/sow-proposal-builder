@@ -42,10 +42,10 @@ def generate_project_description(data):
     fields = [
         "client_name",
         "language",
-        "main_goals",
+        #"main_goals",
         "technology_focus",
         "general_description",
-        "planning",
+        #"planning",
     ]
     selected_data = {k: v for k, v in data.items() if k in fields}
     content = prompts.PROJECT_DESCRIPTION + json.dumps(selected_data)
@@ -62,7 +62,7 @@ def generate_project_description(data):
     )
     final_response = response.choices[0].message.content
     if data["project_type"]=="Gen-OS":
-            content = final_response + "\n\n" + "Improve the text above by taking into account the following" + "\n\n"+ prompts.GENOS
+            content = final_response + "\n\n" + "Improve the text above by taking into account the following" + "\n\n"+ prompts.GENOS + "\n\n"+ selected_data["language"]
             messages = [
                 {"role": "system", "content": prompts.SYSTEM_PROMPT},
                 {"role": "user", "content": content}
