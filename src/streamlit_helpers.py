@@ -162,16 +162,7 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
     with st.form("proposal_form"):
         st.markdown('<h2 class="section-header">Client Information</h2>', unsafe_allow_html=True)
         
-        col1, col2 = st.columns(2)
-        with col1:
-            client_name = st.text_input("**Client Name**", key="client_name")
-        
-        with col2:
-            scope = st.selectbox(
-                "**National / International**",
-                options=["National", "International"],
-                key="scope"
-            )
+        client_name = st.text_input("**Client Name**", key="client_name")
         
         col1, col2 = st.columns(2)
         with col1:
@@ -191,9 +182,7 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         )
         
         st.markdown('<h2 class="section-header">Project Details</h2>', unsafe_allow_html=True)
-        
-        main_goals = st.text_area("**Main Goals and Deliverables**", key="main_goals")
-        
+                
         technology_focus = st.selectbox(
             "**Technology Focus**",
             options=["AWS", "GCP", "Azure", "OnPrem"],
@@ -219,19 +208,11 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         
         special_conditions = st.text_area("**Special Financial Conditions**", key="special_conditions")
 
-        col1, col2 = st.columns(2)
-        with col1:
-            mlops_guidelines = st.selectbox(
-                "**MLOps Guidelines**",
-                options=["Yes", "No"],
-                key="mlops_guidelines"
-            )
-        with col2:
-            agentic_archetypes_guidelines = st.selectbox(
-                "**Agentic Archetype Guidelines**",
-                options=["Yes", "No"],
-                key="agentic_archetypes_guidelines"
-            )
+        agentic_archetypes_guidelines = st.selectbox(
+            "**Agentic Archetype Guidelines**",
+            options=["Yes", "No"],
+            key="agentic_archetypes_guidelines"
+        )
         
         submitted = st.form_submit_button("Generate Proposal")
     
@@ -239,11 +220,9 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         # Create proposal data as JSON
         proposal_data = {
             "client_name": client_name,
-            "scope": scope,
             "language": language,
             "project_name": project_name,
             "project_type": project_type,
-            "main_goals": main_goals,
             "technology_focus": technology_focus,
             "general_description": general_description,
             "planning": planning,
@@ -251,7 +230,6 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "daredata_team": daredata_team,
             "client_expectations": client_expectations,
             "special_conditions": special_conditions,
-            "mlops_guidelines": mlops_guidelines,
             "agentic_archetypes_guidelines": agentic_archetypes_guidelines,
         }
     
