@@ -42,10 +42,8 @@ def generate_project_description(data):
     fields = [
         "client_name",
         "language",
-        #"main_goals",
         "technology_focus",
         "general_description",
-        #"planning",
     ]
     selected_data = {k: v for k, v in data.items() if k in fields}
     content = prompts.PROJECT_DESCRIPTION + json.dumps(selected_data)

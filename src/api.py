@@ -24,11 +24,9 @@ proposals_db = {}
 
 class ProposalRequest(BaseModel):
     client_name: str
-    scope: str
     language: str
     project_name: str
     project_type: str
-    main_goals: str
     technology_focus: str
     general_description: str
     planning: str
@@ -36,7 +34,6 @@ class ProposalRequest(BaseModel):
     daredata_team: str
     client_expectations: str
     special_conditions: str
-    mlops_guidelines: str
     agentic_archetypes_guidelines: str
 
 class ProposalResponse(BaseModel):
