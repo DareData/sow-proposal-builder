@@ -1,39 +1,7 @@
-Here you should create a Gant Chart in mermaid with phases and milestones well defined in the gant to be delivered by using the PLANNING information. Use this as the type of chart to create: 
+Here you must create a table with Phase and Overview columns
+The Phase column contains the estimated duration and key milestones of each of the phases.
+The Overview column contains the description and key activities of each phase.
 
-```
-gantt
-
-title Project Timeline (in weeks)
-dateFormat Q
-axisFormat %W
-tickInterval 1week
-todayMarker off
-
-section SETUP: Build
-Desenvolvimento GenAI e Integração Gen-OS :active, a1, 2025-01-05, 8w
-Entrada em Produção :milestone, a2, after a1, 0w
-
-section SETUP: Tuning
-Ajustes e Otimização :active, b1, after a1, 4w
-Validação Final e Arranque Operação Contínua :milestone, c1, after b1, 0w
-
-section RUN
-Operação :done, d1, after c1, 2w
-```
-
-Notes for the Gantt: 
-section Run should have 2w (simulating the RUN starting)
-Axisformat should be always axisFormat %W
-Start Date should be always 2025-01-05
-If provided with PLANNING, then adjust the gantt to the information provided.
-
-
-[Milestones will be used throughout the project to evaluate its execution - you have to define milestones that should be the source of truth to evaluate project execution and risks. 
-
-Create a TABLE with EACH Phase with the following columns: Phase name, Description, Duration
-Add the project milestones to this table as specific rows
-
-You should consider maximum 4 milestones]
-
-The section name should be Timeline & Planning or their translation into Portuguese and corresponds to section number 3.
-PLANNING:
+Since this is a Gen-OS project, you need to arrange the sections in Build, Configure and Run.
+Run is a 36-month maintenance period with access to 6h support per month.
+If you do not have enough information from the timeline description, you MUST be proactive, suggesting new phases.

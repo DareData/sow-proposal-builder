@@ -1,23 +1,33 @@
-from pydantic_settings import BaseSettings
-from typing import Optional
-from pydantic import validator
+import os
+import streamlit as st
+
 from proposal_builder.helpers import read_prompt
 from pathlib import Path
 
+def get_setting(key: str, default: str = None):
+    """
+    Get a setting from Streamlit secrets, environment variables, or default value
+    Priority: Streamlit secrets > Environment variables > Default
+    """
+    try:
+        # Try Streamlit secrets first (production)
+        return st.secrets[key]
+    except:
+        # Fall back to environment variables (local development)
+        from dotenv import load_dotenv
+        load_dotenv()
+        
+        return os.getenv(key, default)
 
-class Settings(BaseSettings):
-    AZURE_OPENAI_API_KEY: Optional[str] = ''
-    AZURE_OPENAI_ENDPOINT: str
-    AZURE_OPENAI_API_VERSION: str
-    AZURE_OPENAI_DEPLOYMENT: str
-    OPENAI_API_KEY: str
-    OPENAI_API_VERSION: str
-    AZURE_OPENAI_EMBEDDING_DEPLOYMENT: str
-    API_URL: str
-
-    class Config:
-        env_file = ".env"
-
+# Simple settings class (optional - keeps your existing usage pattern)
+class Settings:
+    AZURE_OPENAI_API_KEY = get_setting("AZURE_OPENAI_API_KEY", "")
+    AZURE_OPENAI_ENDPOINT = get_setting("AZURE_OPENAI_ENDPOINT")
+    AZURE_OPENAI_API_VERSION = get_setting("AZURE_OPENAI_API_VERSION")
+    AZURE_OPENAI_DEPLOYMENT = get_setting("AZURE_OPENAI_DEPLOYMENT")
+    OPENAI_API_KEY = get_setting("OPENAI_API_KEY")
+    OPENAI_API_VERSION = get_setting("OPENAI_API_VERSION")
+    AZURE_OPENAI_EMBEDDING_DEPLOYMENT = get_setting("AZURE_OPENAI_EMBEDDING_DEPLOYMENT")
 
 DIR = Path(__file__).parent
 PROMPTS_PATH = DIR / "proposal_builder" / "prompts"

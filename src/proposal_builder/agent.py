@@ -1,6 +1,5 @@
 import json
 from config import settings, prompts
-from proposal_builder.helpers import read_prompt
 from proposal_builder.llm import create_llm
 
 LLM = create_llm(settings)

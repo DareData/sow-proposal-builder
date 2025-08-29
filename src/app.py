@@ -2,7 +2,6 @@
 Main application entry point for the Proposal Builder.
 Handles the Streamlit UI and integrates with the simplified API.
 """
-import requests
 import streamlit as st
 from streamlit_helpers import (
     setup_page_config,
@@ -10,10 +9,7 @@ from streamlit_helpers import (
     render_proposal_form,
     render_footer
 )
-from config import settings
-
-# API configuration
-API_URL = settings.API_URL
+from proposal_builder.agent import generate_proposal
 
 def main():
     """Main application function"""
@@ -67,12 +63,13 @@ def generate_and_display_proposal(proposal_data):
     with st.spinner("Generating proposal... This may take a moment."):
         try:
             # Submit to API
-            response = requests.post(f"{API_URL}/proposals/", json=proposal_data)
-            response.raise_for_status()
-            proposal_info = response.json()
+            #response = requests.post(f"{API_URL}/proposals/", json=proposal_data)
+            #response.raise_for_status()
+            #proposal_info = response.json()
            
             # Store the markdown and proposal data
-            markdown_content = proposal_info.get("markdown", "")
+            #markdown_content = proposal_info.get("markdown", "")
+            markdown_content = generate_proposal(proposal_data)
             st.session_state["proposal_markdown"] = markdown_content
             st.session_state["last_proposal_data"] = proposal_data
             st.session_state["proposal_generated"] = True
