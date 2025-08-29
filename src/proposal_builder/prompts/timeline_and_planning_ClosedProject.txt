@@ -1,31 +1,6 @@
-Here you should create a Gant Chart in mermaid with the phases expected. Use this as the type of chart to create: 
+Here you must create a table with Phase and Overview columns
+The Phase column contains the duration and key milestones of each of the phases.
+The Overview column contains the description and key activities of each phase.
 
-```
-gantt
-
-title Project Timeline (in weeks)
-dateFormat Q
-axisFormat %W
-tickInterval 1week
-todayMarker off
-
-section Start
-Phase 1:  Analysis :active, b1, 2025-01-05, 4w
-Phase 2:  Development :active, a1, after a1, 4w
-Phase x:  Tests and Deploy :active, a3, after a2, 4w
-
-```
-
-Where Xw is the number of expected weeks or months for the contract
-
-Phases and Project Milestones
-
-
-[Milestones will be used throughout the project to evaluate its execution - you have to define milestones that should be the source of truth to evaluate project execution and risks. 
-
-Create a TABLE with EACH Phase with the following columns: Phase name, Description, Duration, Starting Date
-Add the project milestones to this table as specific rows
-
-You should consider maximum 4 milestones]
-
-The section name should be Timeline & Planning or their translation into Portuguese and corresponds to section number 3.
+Since this is a closed project, you MUST be very specific about deliverables: milestones and key activities.
+If you do not have enough information from the timeline description, you MUST be proactive, suggesting new phases.
