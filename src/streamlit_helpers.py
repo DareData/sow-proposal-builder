@@ -213,6 +213,12 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             options=["Yes", "No"],
             key="agentic_archetypes_guidelines"
         )
+
+        mlops = st.selectbox(
+            "**MLOps Guidelines**",
+            options=["Yes", "No"],
+            key="mlops"
+        )
         
         submitted = st.form_submit_button("Generate Proposal")
     
@@ -231,6 +237,7 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "client_expectations": client_expectations,
             "special_conditions": special_conditions,
             "agentic_archetypes_guidelines": agentic_archetypes_guidelines,
+            "mlops": mlops,
         }
     
     return proposal_data, submitted
