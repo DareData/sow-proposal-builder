@@ -3,7 +3,7 @@ You MUST use the general_description that I have provided to give a Project Desc
 Problem Statement (or Enquadramento): what issue are we trying to solve;
 Objective (or Objetivo): what would be the expected outcome of the project;
 Key Capabilities (or Capacidades Chave): what specific capabilities will convince the client and are necessary for the solution. This should be a list of Key Capabilities;
-Solution Design (or Desenho da Solução): in here you explain how the solution works for a business reader and then proceed to describe it for a technical reader, but don't write it explicitly.  
+Solution Design (or Desenho da Solução): explain the solution in a natural progression that serves both business and technical audiences. Start with high-level business value and functionality, then naturally transition into more technical implementation details. The text should flow seamlessly without explicitly labeling sections as "for business readers" or "for technical readers". 
 
 If no explicit description is provided to answer some of the subsections, you must have a proactive approach and suggest extra content.
 This is section number 2.
