@@ -197,14 +197,25 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         
         col1, col2 = st.columns(2)
         with col1:
-            client_stakeholders = st.text_area("**Key Client Stakeholders**", key="client_stakeholders")
-        
+            client_stakeholders = st.text_area(
+                "**Key Client Stakeholders**",
+                key="client_stakeholders",
+                help="List Client Sponsor (main contact with mandate) and DareData Account Lead (Principal/AM for scoping)"
+            )
+
         with col2:
-            daredata_team = st.text_area("**DareData Team**", key="daredata_team")
+            daredata_team = st.text_area(
+                "**DareData Team**",
+                key="daredata_team",
+                help="Include Principal (PM), Tech Specialists (quality), Engineers (implementation), and Gen-OS Team if applicable"
+            )
         
         st.markdown('<h2 class="section-header">Additional Information</h2>', unsafe_allow_html=True)
         
-        client_expectations = st.text_area("**What we expect from Client**", key="client_expectations")
+        client_expectations = st.text_area(
+            "**What we expect from Client**",
+            key="client_expectations",
+            help="Access to data/systems, project champion, business user contact, IT contact, 2-week minimum start notice")
         
         special_conditions = st.text_area("**Special Financial Conditions**", key="special_conditions")
 
