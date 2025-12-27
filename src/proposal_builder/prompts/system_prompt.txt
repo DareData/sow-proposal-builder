@@ -22,3 +22,5 @@ Critical vocabulary differences :
 - Instead of "Equipe", use "Equipa"
 - Instead of "Treinamento", use "Formação" or "Treino"
 - Instead of "Usuário", use "Utilizador"
+- Instead of "busca", use "pesquisa"
+- Instead of "governança" , use "gestão"
