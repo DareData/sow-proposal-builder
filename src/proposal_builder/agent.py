@@ -61,6 +61,12 @@ def generate_project_description(data):
         {"role": "system", "content": prompts.SYSTEM_PROMPT},
         {"role": "user", "content": content}
     ]
+    
+    # append prompt if an extended description is necessary 
+    if data["extended_description"]==True:
+        messages.append({
+            "role": "user", "content": "Please provide an extended, more comprehensive project description. The description should be thorough and substantial, suitable for a large-scale client project."})
+    
     response = LLM.chat.completions.create(
         model=settings.AZURE_OPENAI_DEPLOYMENT,
         messages=messages,

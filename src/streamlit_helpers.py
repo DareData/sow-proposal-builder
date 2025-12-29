@@ -189,7 +189,19 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             key="technology_focus"
         )
         
-        general_description = st.text_area("**General Description**", key="general_description")
+        
+        
+        col1, _ , _, col4 = st.columns([2, 1, 1, 1])
+        with col1:
+            st.markdown("**General Description**")
+        with col4:
+            extended_description = st.checkbox("Extended", key="extended_description", help="Generate a more detailed and comprehensive project description")
+
+        general_description = st.text_area(
+            "General Description",
+            key="general_description",
+            label_visibility="collapsed" 
+        )
         
         st.markdown('<h2 class="section-header">Planning and Team</h2>', unsafe_allow_html=True)
         
@@ -242,6 +254,7 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "project_type": project_type,
             "technology_focus": technology_focus,
             "general_description": general_description,
+            "extended_description": extended_description,
             "planning": planning,
             "client_stakeholders": client_stakeholders,
             "daredata_team": daredata_team,
