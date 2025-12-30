@@ -51,8 +51,6 @@ def generate_project_description(data):
     ]
     selected_data = {k: v for k, v in data.items() if k in fields}
     content = prompts.PROJECT_DESCRIPTION + json.dumps(selected_data)
-    if data["agentic_archetypes_guidelines"]=="Yes":
-        content = content + "\n\n" + prompts.AGENTS_ARCHETYPES
     
     if data["mlops"]=="Yes":
         content = content + "\n\n" + prompts.MLOPS
@@ -61,6 +59,12 @@ def generate_project_description(data):
         {"role": "system", "content": prompts.SYSTEM_PROMPT},
         {"role": "user", "content": content}
     ]
+    
+    # append prompt if an extended description is necessary 
+    if data["extended_description"]==True:
+        messages.append({
+            "role": "user", "content": "Please provide an extended, more comprehensive project description. The description should be thorough and substantial, suitable for a large-scale client project."})
+    
     response = LLM.chat.completions.create(
         model=settings.AZURE_OPENAI_DEPLOYMENT,
         messages=messages,
@@ -137,8 +141,8 @@ def generate_requirements(data: dict) -> str:
     return response.choices[0].message.content
 
 def generate_SIFIDE():
-    content = """# Preço
-        A DareData é reconhecida com o Selo ID: Reconhecimento de Idoneidade. Isso significa acesso ao sistema de incentivos fiscais para R&D empresarial que visa aumentar a competitividade das empresas, apoiando os seus esforços em Pesquisa e Desenvolvimento através da dedução total das despesas de R&D na cobrança do IRC.
+    content = """# 7. Preço
+A DareData é reconhecida com o Selo ID: Reconhecimento de Idoneidade. Isso significa acesso ao sistema de incentivos fiscais para R&D empresarial que visa aumentar a competitividade das empresas, apoiando os seus esforços em Pesquisa e Desenvolvimento através da dedução total das despesas de R&D na cobrança do IRC.
 Vários dos nossos clientes conseguem poupar significativamente na dedução do IRC (de 32,5% até 82,5%) porque somos uma empresa certificada. É necessário criar um projeto interno de I&D na sua organização, dentro do âmbito do SIFIDE.
 
 Nota: no primeiro ano em que se candidatar, tem garantido um desconto de 82,5%. A maioria das empresas já tem um departamento para estes processos, mas podemos ajudar com a proposta, se necessário.

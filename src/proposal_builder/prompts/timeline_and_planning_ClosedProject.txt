@@ -1,6 +1,18 @@
-Here you must create a table with Phase and Overview columns
-The Phase column contains the duration and key milestones of each of the phases.
-The Overview column contains the description and key activities of each phase.
+Section number: 3
+Section title (English): "Timeline and Planning"
+Section title (Portuguese): "Planeamento e Calendário"
 
-Since this is a closed project, you MUST be very specific about deliverables: milestones and key activities.
-If you do not have enough information from the timeline description, you MUST be proactive, suggesting new phases.
+<section_guidelines>
+Create a table with Phase | Overview columns.
+
+Phase column: Contains the duration and key milestones of each of the phases.
+
+Example:
+Problem Definition & Assessment
+Duration: 2-3 weeks
+
+Overview column: Contains the description and key activities of each phase. No bullet points - write as flowing prose
+- Example: "During this phase we will engage with [client]'s IT and business teams in interviews and work sessions to redefine and adapt the proposed architecture. The activities will include mapping data sources, assessing available information, and defining model parameters. At the end of this phase, [client] should have a refined data architecture."
+
+Since this is a closed project, be very specific about the deliverables: milestones and key activities.
+</section_guidelines>
