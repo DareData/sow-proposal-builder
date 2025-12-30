@@ -218,18 +218,47 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             help="Access to data/systems, project champion, business user contact, IT contact, 2-week minimum start notice")
         
         special_conditions = st.text_area("**Special Financial Conditions**", key="special_conditions")
+        
+        st.markdown('<h2 class="section-header"> Best Practices </h2>', unsafe_allow_html=True)
 
-        agentic_archetypes_guidelines = st.selectbox(
-            "**Agentic Archetype Guidelines**",
-            options=["Yes", "No"],
-            key="agentic_archetypes_guidelines"
-        )
+        col1, col2, col3 = st.columns(3)
 
-        mlops = st.selectbox(
-            "**MLOps Guidelines**",
-            options=["Yes", "No"],
-            key="mlops"
-        )
+        with col1:
+            agentic_archetypes_guidelines = st.selectbox(
+                "**Agentic Archetypes**",
+                options=["No", "Yes"],
+                key="agentic_archetypes_guidelines",
+            )
+
+        with col2:
+            mlops = st.selectbox(
+                "**MLOps**",
+                options=["No", "Yes"],
+                key="mlops",
+            )
+
+        with col3:
+            devops = st.selectbox(
+                "**DevOps**",
+                options=["No", "Yes"],
+                key="devops",
+            )
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            llmops = st.selectbox(
+                "**LLMOps**",
+                options=["No", "Yes"],
+                key="llmops",
+            )
+
+        with col2:
+            wow = st.selectbox(
+                "**Ways of Working**",
+                options=["No", "Yes"],
+                key="wow",
+            )
         
         submitted = st.form_submit_button("Generate Proposal")
     
@@ -249,6 +278,9 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "special_conditions": special_conditions,
             "agentic_archetypes_guidelines": agentic_archetypes_guidelines,
             "mlops": mlops,
+            "devops": devops,
+            "llmops": llmops,
+            "wow": wow,
         }
     
     return proposal_data, submitted
