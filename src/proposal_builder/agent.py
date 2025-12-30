@@ -137,7 +137,7 @@ def generate_requirements(data: dict) -> str:
     return response.choices[0].message.content
 
 def generate_SIFIDE():
-    content = """# Preço
+    content = """# 7. Preço
 A DareData é reconhecida com o Selo ID: Reconhecimento de Idoneidade. Isso significa acesso ao sistema de incentivos fiscais para R&D empresarial que visa aumentar a competitividade das empresas, apoiando os seus esforços em Pesquisa e Desenvolvimento através da dedução total das despesas de R&D na cobrança do IRC.
 Vários dos nossos clientes conseguem poupar significativamente na dedução do IRC (de 32,5% até 82,5%) porque somos uma empresa certificada. É necessário criar um projeto interno de I&D na sua organização, dentro do âmbito do SIFIDE.
 
