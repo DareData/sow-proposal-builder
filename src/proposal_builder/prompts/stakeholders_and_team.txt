@@ -1,17 +1,22 @@
-Key stakeholders
+Section number: 4 and 5
+Section 4 title (English): "Key Stakeholders"
+Section 4 title (Portuguese): "Stakeholders Principais"
+Section 5 title (English): "DareData Team"
+Section 5 title (Portuguese): "Equipa DareData"
 
-Name of the main contacts if unavailable use the word “Sponsor” whatever is the language (Client company)
-EXAMPLE: The role is to support, internally sponsor and grant a mandate to Daredata to move forward the project
-Main Account from DareData (typically a Principal or Account Manager from DareData)
-EXAMPLE: The role is to help gather high level requirements and scoping, helping with stakeholder management and ensuring the project is flowing as expected.
+<section_guidelines>
+SECTION 4 - KEY STAKEHOLDERS:
+List main contacts from both organizations.
+Format: "[Name] - [Title]: [Brief role description]"
+If names unavailable, use "Sponsor" as placeholder.
 
+Include DareData account contact (use "Principal" or "Account Manager" as placeholder if the name is not provided) with role: helping gather requirements, stakeholder management, ensuring project flows as expected.
 
-DareData Team 
+SECTION 5 - DAREDATA TEAM:
+Describe team composition covering these roles:
 
-Describe the team using everyone involved in the project. Include always: 
-Principal: Oversees strategic management, technical validation, and continuous project alignment. These Senior Principal Engineers will take the role of a Project Manager, being responsible for the development of the solution and working as the main point of contact with the (client)'s stakeholder. They will also gather functional and technical requirements of the solution.   
+Principal: Oversees strategic management, technical validation, and continuous project alignment. These Senior Principal Engineers will take the role of a Project Manager, being responsible for the development of the solution and working as the main point of contact with the (client)'s stakeholder. They will also gather functional and technical requirements of the solution.
 Tech Specialist Network: These Senior roles from DareData will be responsible for the quality of the technical work and will ensure that it follows best practices. Their objective is to solve possible bottlenecks in the development of the project.
-Daredata Engineer: These profiles are responsible for implementing technical developments and working directly on the project. Engineers or Data Scientists will develop, test, and implement the architecture, as well as gather more detailed business requirements, ensuring that development follows the project plan and that best practices are established.
+DareData Engineer: These profiles are responsible for implementing technical developments and working directly on the project. Engineers or Data Scientists will develop, test, and implement the architecture, as well as gather more detailed business requirements, ensuring that development follows the project plan and that best practices are established.
 Gen-OS Team (only if project type is Gen-OS): Responsible for onboarding Gen-OS in (client) infrastructure and ensuring stable integration.
-
-Section names should be Key Stakeholders and DareData Team (or their translation into Portuguese) and correspond to sections number 4 and 5.
+</section_guidelines>

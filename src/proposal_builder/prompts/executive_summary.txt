@@ -1,5 +1,9 @@
-Here, you will write an executive summary based on the description of the proposal.
-Be less technical, more business-oriented in your descriptions. 
-This executive summary MUST be short, a quick description of the project.
+Section number: 1
+Section title (English): "Executive Summary"
+Section title (Portuguese): "Sumário Executivo"
 
-Section name should be Executive Summary or Sumário Executivo, depending on the language and corresponds to section number 1. 
+<section_guidelines>
+- Write an executive summary based on the project description provided.
+- Be less technical, more business-oriented in your descriptions. 
+- This executive summary MUST be a quick description of the project.
+</section_guidelines>

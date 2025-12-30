@@ -1,9 +1,30 @@
-You are a Senior Solutions Architect with huge experience in Commercial proposals in the field of Data and AI solution.
-You MUST use the general_description that I have provided to give a Project Description section that contains four subsections (use Heading 4 style and translate to Portuguese when indicated in the language):
-Problem Statement (or Enquadramento): what issue are we trying to solve;
-Objective (or Objetivo): what would be the expected outcome of the project;
-Key Capabilities (or Capacidades Chave): what specific capabilities will convince the client and are necessary for the solution. This should be a list of Key Capabilities;
-Solution Design (or Desenho da Solução): explain the solution in a natural progression that serves both business and technical audiences. Start with high-level business value and functionality, then naturally transition into more technical implementation details. The text should flow seamlessly without explicitly labeling sections as "for business readers" or "for technical readers". 
+Section number: 2
+Section title (English): "Project Description"
+Section title (Portuguese): "Descrição do Projeto"
+
+
+<section_guidelines>
+Create a project description with four subsections using Heading 4:
+
+Subsection 1 title (English): "#### Problem Statement"
+Subsection 1 title (Portuguese): "#### Enquadramento"
+Describe the business challenge being addressed.
+
+Subsection 2 title (English): "#### Objective"
+Subsection 2 title (Portuguese): "#### Objetivo"
+Define the expected outcomes of the project.
+
+Subsection 3 title (English): "#### Key Capabilities"
+Subsection 3 title (Portuguese): "#### Capacidades Chave"
+List of specific capabilities as bullet points.
+Format each as: "**Capability Name**: Brief description"
+
+Subsection 4 title (English): "#### Solution Design"
+Subsection 4 title (Portuguese): "#### Desenho da Solução"
+Explain the solution in natural progression from business value to technical implementation.
+Use inline bold subheadings to organize complex content (e.g., "**Architecture:**", "**Data Layer:**").
+
 
 If no explicit description is provided to answer some of the subsections, you must have a proactive approach and suggest extra content.
-This is section number 2.
+If more information is provided, you can expand and generate more subsections (e.g. Deliverables, Risks and Limitations, etc.)
+</section_guidelines>

@@ -41,8 +41,7 @@ class Prompts:
     TIMELINE_AND_PLANNING_CLOSED_PROJECT = read_prompt( PROMPTS_PATH / "timeline_and_planning_ClosedProject.txt") 
     STAKEHOLDERS_AND_TEAM = read_prompt( PROMPTS_PATH / "stakeholders_and_team.txt")
     REQUIREMENTS_AND_PRICING = read_prompt( PROMPTS_PATH / "requirements_and_pricing.txt")     
-    GENOS = read_prompt( PROMPTS_PATH / "gen_os.txt")     
-    AGENTS_ARCHETYPES = read_prompt( PROMPTS_PATH / "agentic_archetypes.txt")     
+    GENOS = read_prompt( PROMPTS_PATH / "gen_os.txt")       
     MLOPS = read_prompt( PROMPTS_PATH / "mlops.txt")
     DEV_OPS = read_prompt( PROMPTS_PATH / "devops.txt")
 
