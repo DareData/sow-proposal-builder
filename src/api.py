@@ -34,7 +34,6 @@ class ProposalRequest(BaseModel):
     daredata_team: str
     client_expectations: str
     special_conditions: str
-    agentic_archetypes_guidelines: str
 
 class ProposalResponse(BaseModel):
     markdown: Optional[str] = None

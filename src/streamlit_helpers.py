@@ -219,11 +219,6 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         
         special_conditions = st.text_area("**Special Financial Conditions**", key="special_conditions")
 
-        agentic_archetypes_guidelines = st.selectbox(
-            "**Agentic Archetype Guidelines**",
-            options=["Yes", "No"],
-            key="agentic_archetypes_guidelines"
-        )
 
         mlops = st.selectbox(
             "**MLOps Guidelines**",
@@ -247,7 +242,6 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "daredata_team": daredata_team,
             "client_expectations": client_expectations,
             "special_conditions": special_conditions,
-            "agentic_archetypes_guidelines": agentic_archetypes_guidelines,
             "mlops": mlops,
         }
     

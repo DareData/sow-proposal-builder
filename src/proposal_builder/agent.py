@@ -51,8 +51,6 @@ def generate_project_description(data):
     ]
     selected_data = {k: v for k, v in data.items() if k in fields}
     content = prompts.PROJECT_DESCRIPTION + json.dumps(selected_data)
-    if data["agentic_archetypes_guidelines"]=="Yes":
-        content = content + "\n\n" + prompts.AGENTS_ARCHETYPES
     
     if data["mlops"]=="Yes":
         content = content + "\n\n" + prompts.MLOPS
