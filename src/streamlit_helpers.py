@@ -230,13 +230,41 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             help="Access to data/systems, project champion, business user contact, IT contact, 2-week minimum start notice")
         
         special_conditions = st.text_area("**Special Financial Conditions**", key="special_conditions")
+        
+        st.markdown('<h2 class="section-header"> Best Practices </h2>', unsafe_allow_html=True)
 
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            wow = st.selectbox(
+                "**Ways of Working**",
+                options=["No", "Yes"],
+                key="wow",
+            )
+            
+        with col2:
+            mlops = st.selectbox(
+                "**MLOps**",
+                options=["No", "Yes"],
+                key="mlops",
+            )
 
-        mlops = st.selectbox(
-            "**MLOps Guidelines**",
-            options=["Yes", "No"],
-            key="mlops"
-        )
+        with col3:
+            devops = st.selectbox(
+                "**DevOps**",
+                options=["No", "Yes"],
+                key="devops",
+            )
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            llmops = st.selectbox(
+                "**LLMOps**",
+                options=["No", "Yes"],
+                key="llmops",
+            )
+
         
         submitted = st.form_submit_button("Generate Proposal")
     
@@ -256,6 +284,9 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "client_expectations": client_expectations,
             "special_conditions": special_conditions,
             "mlops": mlops,
+            "devops": devops,
+            "llmops": llmops,
+            "wow": wow,
         }
     
     return proposal_data, submitted

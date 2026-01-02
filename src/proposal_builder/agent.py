@@ -54,7 +54,14 @@ def generate_project_description(data):
     
     if data["mlops"]=="Yes":
         content = content + "\n\n" + prompts.MLOPS
+    if data["devops"]=="Yes":
+        content = content + "\n\n" + """
+        ---
+        DEVOPS BEST PRACTICES FRAMEWORK
+        Use as reference to enrich Solution Design. Extract and adapt relevant principles - do not copy verbatim. Integrate naturally using inline bold subheadings. Adapt to project's technology stack and context.
+        ---
 
+        """ + prompts.DEV_OPS
     messages = [
         {"role": "system", "content": prompts.SYSTEM_PROMPT},
         {"role": "user", "content": content}
