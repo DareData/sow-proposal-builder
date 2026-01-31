@@ -39,6 +39,7 @@ def generate_executive_summary(data: dict, description: str) -> str:
     response = LLM.chat.completions.create(
         model=settings.AZURE_OPENAI_DEPLOYMENT,
         messages=messages,
+        temperature=0.5,
     )
     return response.choices[0].message.content
 
