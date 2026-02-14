@@ -24,6 +24,10 @@ Subsection 4 title (Portuguese): "#### Desenho da Solução"
 Explain the solution in natural progression from business value to technical implementation.
 Use inline bold subheadings to organize complex content (e.g., "**Architecture:**", "**Data Layer:**").
 
+Subsection 5 title (English): "#### Risks"
+Subsection 5 title (Portuguese): "#### Riscos"
+Identify main risks to the implementation of the solution.
+
 
 If no explicit description is provided to answer some of the subsections, you must have a proactive approach and suggest extra content.
 If more information is provided, you can expand and generate more subsections (e.g. Deliverables, Risks and Limitations, etc.)

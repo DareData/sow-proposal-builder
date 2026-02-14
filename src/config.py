@@ -39,7 +39,7 @@ class Prompts:
     TIMELINE_AND_PLANNING_GENOS = read_prompt( PROMPTS_PATH / "timeline_and_planning_GENOS.txt") 
     TIMELINE_AND_PLANNING_COCREATION = read_prompt( PROMPTS_PATH / "timeline_and_planning_CoCreation.txt") 
     TIMELINE_AND_PLANNING_CLOSED_PROJECT = read_prompt( PROMPTS_PATH / "timeline_and_planning_ClosedProject.txt") 
-    STAKEHOLDERS_AND_TEAM = read_prompt( PROMPTS_PATH / "stakeholders_and_team.txt")
+    DAREDATA_TEAM = read_prompt( PROMPTS_PATH / "daredata_team.txt")
     REQUIREMENTS_AND_PRICING = read_prompt( PROMPTS_PATH / "requirements_and_pricing.txt")     
     GENOS = read_prompt( PROMPTS_PATH / "gen_os.txt")       
     MLOPS = read_prompt( PROMPTS_PATH / "mlops.txt")

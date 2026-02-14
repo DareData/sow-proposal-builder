@@ -7,7 +7,7 @@ LLM = create_llm(settings)
 def generate_proposal(data: dict) -> str:
     project_desc = generate_project_description(data)
     timeline_planning = generate_timeline_planning(data)
-    stakeholders_and_team = generate_stakeholders_and_team(data)
+    daredata_team = generate_daredata_team(data)
     requirements = generate_requirements(data)
     work_agreement = generate_work_agreement(data)
     exc_summ = generate_executive_summary(data, project_desc)
@@ -20,7 +20,7 @@ def generate_proposal(data: dict) -> str:
         exc_summ,
         project_desc,
         timeline_planning,
-        stakeholders_and_team,
+        daredata_team,
         requirements,
         sifide,
         work_agreement
@@ -113,17 +113,16 @@ def generate_timeline_planning(data: dict) -> str:
     )
     return response.choices[0].message.content
 
-def generate_stakeholders_and_team(data: dict) -> str:
+def generate_daredata_team(data: dict) -> str:
     fields = [
         "client_name",
         "language",
-        "client_stakeholders",
         "daredata_team"
     ]
     data = {k: v for k, v in data.items() if k in fields}
     messages = [
         {"role": "system", "content": prompts.SYSTEM_PROMPT},
-        {"role": "user", "content": prompts.STAKEHOLDERS_AND_TEAM + json.dumps(data)}
+        {"role": "user", "content": prompts.DAREDATA_TEAM + json.dumps(data)}
     ]
     response = LLM.chat.completions.create(
         model=settings.AZURE_OPENAI_DEPLOYMENT,
@@ -191,6 +190,11 @@ def generate_work_agreement(data: dict) -> str:
         "# 8. Condições Comerciais",
         "Acordo de trabalho",
         "Todo o trabalho será efetuado remotamente (preferencialmente).",
+        """O presente Statement of Work baseia-se no âmbito, pressupostos, dependências e cronograma acordados no início do projeto. Caso surjam novos requisitos, alterações às especificações previamente definidas ou atrasos/modificações nas responsabilidades do Cliente (nomeadamente disponibilização de dados, acessos, validações ou recursos), a equipa de projeto iniciará um processo estruturado de análise de alteração para avaliar o respetivo impacto.
+
+Sempre que tal ocorra, será preparado um registo da alteração proposta, incluindo a avaliação do impacto em termos de esforço, prazo de execução, planeamento e condições comerciais. Quaisquer ajustamentos ao âmbito, marcos de pagamento ou honorários serão discutidos de forma transparente e formalizados por escrito antes do início dos trabalhos adicionais ou revistos.
+
+Este mecanismo visa garantir o alinhamento contínuo entre as partes à medida que o projeto evolui, salvaguardando a qualidade da entrega, a exequibilidade dos prazos e o equilíbrio comercial da colaboração.""",
         " ",
         "Condições de pagamento",
         work_agreement_dict_pt[data["project_type"]],
@@ -211,6 +215,11 @@ def generate_work_agreement(data: dict) -> str:
         "# 8. Commercial Conditions",
         "Work agreement",
         "All the work will be done remotely.",
+        """This Statement of Work is based on the scope, assumptions, dependencies, and timeline agreed at the start of the engagement. If new requirements arise, existing specifications change, or client-side inputs (e.g., data, access, approvals, or resources) are delayed or modified, the project team will initiate a structured change review to assess the impact.
+
+When such situations occur, the project team will document the proposed change and outline its implications in terms of effort, delivery timeline, sequencing, and commercial conditions. Any adjustments to scope, milestones, or fees will be discussed transparently and agreed in writing before the additional or modified work proceeds.
+
+This approach ensures that both parties remain aligned as the project evolves, protecting delivery quality, maintaining realistic timelines, and preserving a fair commercial balance throughout the engagement.""",
         " ",
         "Payment terms",
         work_agreement_dict_en[data['project_type']],

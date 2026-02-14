@@ -1,18 +1,8 @@
-Section number: 4 and 5
-Section 4 title (English): "Key Stakeholders"
-Section 4 title (Portuguese): "Stakeholders Principais"
-Section 5 title (English): "DareData Team"
-Section 5 title (Portuguese): "Equipa DareData"
+Section number: 4
+Section 4 title (English): "DareData Team"
+Section 4 title (Portuguese): "Equipa DareData"
 
-<section_guidelines>
-SECTION 4 - KEY STAKEHOLDERS:
-List main contacts from both organizations.
-Format: "[Name] - [Title]: [Brief role description]"
-If names unavailable, use "Sponsor" as placeholder.
-
-Include DareData account contact (use "Principal" or "Account Manager" as placeholder if the name is not provided) with role: helping gather requirements, stakeholder management, ensuring project flows as expected.
-
-SECTION 5 - DAREDATA TEAM:
+SECTION 4 - DAREDATA TEAM:
 Describe team composition covering these roles:
 
 Principal: Oversees strategic management, technical validation, and continuous project alignment. These Senior Principal Engineers will take the role of a Project Manager, being responsible for the development of the solution and working as the main point of contact with the (client)'s stakeholder. They will also gather functional and technical requirements of the solution.

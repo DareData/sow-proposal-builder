@@ -207,20 +207,11 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         
         planning = st.text_area("**Planning - Timeline, Team Effort and Project Milestones**", key="planning")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            client_stakeholders = st.text_area(
-                "**Key Client Stakeholders**",
-                key="client_stakeholders",
-                help="List Client Sponsor (main contact with mandate) and DareData Account Lead (Principal/AM for scoping)"
-            )
-
-        with col2:
-            daredata_team = st.text_area(
-                "**DareData Team**",
-                key="daredata_team",
-                help="Include Principal (PM), Tech Specialists (quality), Engineers (implementation), and Gen-OS Team if applicable"
-            )
+        daredata_team = st.text_area(
+            "**DareData Team**",
+            key="daredata_team",
+            help="Include Principal (PM), Tech Specialists (quality), Engineers (implementation), and Gen-OS Team if applicable"
+        )
         
         st.markdown('<h2 class="section-header">Additional Information</h2>', unsafe_allow_html=True)
         
@@ -279,7 +270,6 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "general_description": general_description,
             "extended_description": extended_description,
             "planning": planning,
-            "client_stakeholders": client_stakeholders,
             "daredata_team": daredata_team,
             "client_expectations": client_expectations,
             "special_conditions": special_conditions,
