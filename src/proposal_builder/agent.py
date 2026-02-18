@@ -176,12 +176,12 @@ Melhores práticas:
 def generate_work_agreement(data: dict) -> str:
     work_agreement_dict_en = {
         "Closed Project": "Payment of 30% on acceptance of the proposal, payment of 70% at the end",
-        "Gen-OS": "Setup: Payment of 30% on acceptance of the proposal, payment of 70% at the end\n\nRun: Monthly Payment / Annual Payment (5% discount)",
+        "Gen-OS": "Setup: Payment of 30% on acceptance of the proposal, payment of 70% at the end\n\nRun (36-month contract): Monthly Payment / Annual Payment (5% discount)",
         "Co-Creation": "Payment based on work timesheets",
     }
     work_agreement_dict_pt = {
         "Closed Project": "Pagamento do 30% aquando da aceitação da proposta, 70% no final",
-        "Gen-OS": "Setup: 30% aquando da aceitação da proposta, 70% no final\n\nRun: Pagamentos Mensais/ Anuais (5% desconto)",
+        "Gen-OS": "Setup: 30% aquando da aceitação da proposta, 70% no final\n\nRun (contrato de 36 meses): Pagamentos Mensais/ Anuais (5% desconto)",
         "Co-Creation": "Pagamento com base em timesheets",
     }
 
