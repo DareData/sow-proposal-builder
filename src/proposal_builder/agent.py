@@ -11,6 +11,7 @@ def generate_proposal(data: dict) -> str:
     requirements = generate_requirements(data)
     work_agreement = generate_work_agreement(data)
     exc_summ = generate_executive_summary(data, project_desc)
+    pricing = generate_pricing(data)
     if data["language"] == "Portuguese":
         sifide = generate_SIFIDE()
     else:
@@ -22,6 +23,7 @@ def generate_proposal(data: dict) -> str:
         timeline_planning,
         daredata_team,
         requirements,
+        pricing,
         sifide,
         work_agreement
     ])
@@ -98,14 +100,10 @@ def generate_timeline_planning(data: dict) -> str:
         "planning",
     ]
     selected_data = {k: v for k, v in data.items() if k in fields}
-    type_of_project_dict = {
-        "Gen-OS": prompts.TIMELINE_AND_PLANNING_GENOS,
-        "Closed Project": prompts.TIMELINE_AND_PLANNING_CLOSED_PROJECT,
-        "Co-Creation": prompts.TIMELINE_AND_PLANNING_COCREATION
-    }
+
     messages = [
         {"role": "system", "content": prompts.SYSTEM_PROMPT},
-        {"role": "user", "content": type_of_project_dict[data["project_type"]] + json.dumps(selected_data)}
+        {"role": "user", "content": prompts.TIMELINE_AND_PLANNING + json.dumps(selected_data)}
     ]
     response = LLM.chat.completions.create(
         model=settings.AZURE_OPENAI_DEPLOYMENT,
@@ -147,8 +145,69 @@ def generate_requirements(data: dict) -> str:
     )
     return response.choices[0].message.content
 
+def generate_pricing(data):
+
+    if data["project_type"]=="Gen-OS" & data["language"]=="Portuguese":
+        content = """# 7. Preço
+### CAPEX
+Trata-se de um pagamento único pela configuração da solução: criação de agentes, integração com os sistemas internos e setup da infraestrutura.
+
+### OPEX
+O Gen-OS oferece observabolodade contínua do desempenho da solução em uso real e destaca onde é necessária uma intervenção.
+O Gen-OS regista e analisa automaticamente todas as interações. Detecta tópicos recorrentes, identifica padrões como defleições frequentes ou respostas de baixa confiança e sinaliza possíveis problemas. 
+O Gen-OS pode ser operado de duas maneiras:
+
+*Bring Your Own Cloud (BYOC)*
+A solução é integrada à sua infraestrutura, enquanto a DareData gere a camada Gen-OS e os processos operacionais.
+*Software as a Service (SaaS)*
+A DareData gere a solução completa em um tenant dedicado. Isso normalmente acarreta uma sobrecarga operacional mais alta devido ao gestão da infraestrutura.
+
+A assinatura do Gen-OS inclui:
+- Licença da plataforma com atualizações e upgrades contínuos
+- Monitorização, registo e análise de todas as interações de IA
+- Número de seats para tipos de utilizador (administradores e operadores)
+Além disso, os créditos Gen-OS são consumidos de forma flexível em chamadas LLM e agentes de IA e escalam com o uso. Cada crédito corresponde ao que acreditamos ser um pedido típico, de modo que os custos sejam mais claros para o utilizador final.
+
+### Suporte opcional
+Suporte padrão ou premium, dependendo do modelo selecionado.
+"""
+    if data["project_type"]=="Gen-OS" & data["language"]=="English":
+        content = """# 7. Price
+### CAPEX
+This is a one-time payment for the solution setup: agent building, system integration and infrastructure setup.
+
+
+### OPEX
+Gen-OS provides continuous visibility into how the solution performs in real usage and highlights where intervention is needed.
+Gen-OS automatically logs and analyses all interactions. It detects recurring topics, identifies patterns such as frequent escalations or low-confidence answers, and flags potential issues. 
+Gen-OS can be operated in two ways:
+
+*Bring Your Own Cloud (BYOC)*
+The solution is integrated into your infrastructure, while DareData manages the Gen-OS layer and operational processes.
+*Software as a Service (SaaS)*
+DareData manages the full solution in a dedicated tenant. This typically comes with higher operational overhead due to infrastructure management.
+
+The Gen-OS subscription includes:
+- Platform license with ongoing updates and upgrades
+- Monitoring, logging, and analytics for all AI interactions
+- Included user roles (admins and operators)
+
+Additionally, Gen-OS Credits are consumed flexibly across LLM calls and AI agents and scale with usage. Each credit corresponds to what we believe to be a typical request, such that costs are clearer to the final user.
+
+### Optional Support
+Standard or Premium Support, depending on the selected model.
+"""
+    if data["project_type"]!="Gen-OS" & data["language"]=="Portuguese":
+        content = "# 7. Preço"
+    if data["project_type"]!="Gen-OS" & data["language"]=="English":
+        content = "# 7. Price"
+    else:
+        raise "This should not happen"
+    
+    return content
+
 def generate_SIFIDE():
-    content = """# 7. Preço
+    content = """
 A DareData é reconhecida com o Selo ID: Reconhecimento de Idoneidade. Isso significa acesso ao sistema de incentivos fiscais para R&D empresarial que visa aumentar a competitividade das empresas, apoiando os seus esforços em Pesquisa e Desenvolvimento através da dedução total das despesas de R&D na cobrança do IRC.
 Vários dos nossos clientes conseguem poupar significativamente na dedução do IRC (de 32,5% até 82,5%) porque somos uma empresa certificada. É necessário criar um projeto interno de I&D na sua organização, dentro do âmbito do SIFIDE.
 
