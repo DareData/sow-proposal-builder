@@ -1,300 +1,134 @@
-import json
-from config import settings, prompts
-from proposal_builder.llm import create_llm
+"""
+Proposal generation orchestrator.
 
-LLM = create_llm(settings)
+Two-phase pattern inside generate_proposal():
+  Phase 1 — LLM sections computed in dependency order
+             (executive_summary must run after project_desc; all others are independent)
+  Phase 2 — Sections assembled in reader/document order
+             (which differs from computation order)
+
+Static sections (pricing, SIFIDE, work agreement) involve no LLM calls and are
+handled by static_sections.py — edit those files under proposal_builder/templates/.
+"""
+from __future__ import annotations
+
+import json
+
+from config import prompts
+from proposal_builder.frameworks import append_frameworks
+from proposal_builder.llm_caller import get_llm
+from proposal_builder.static_sections import get_pricing, get_sifide, get_work_agreement
+
+
+# ---------------------------------------------------------------------------
+# Public entry point
+# ---------------------------------------------------------------------------
 
 def generate_proposal(data: dict) -> str:
-    project_desc = generate_project_description(data)
-    timeline_planning = generate_timeline_planning(data)
-    daredata_team = generate_daredata_team(data)
-    requirements = generate_requirements(data)
-    work_agreement = generate_work_agreement(data)
-    exc_summ = generate_executive_summary(data, project_desc)
-    pricing = generate_pricing(data)
-    if data["language"] == "Portuguese":
-        sifide = generate_SIFIDE()
-    else:
-        sifide = ""
+    llm = get_llm()
 
-    proposal = "\n".join([
-        exc_summ,
+    # Phase 1: LLM sections (dependency order)
+    project_desc = _project_description(data, llm)
+    timeline = _timeline_planning(data, llm)
+    team = _daredata_team(data, llm)
+    requirements = _requirements(data, llm)
+    exec_summary = _executive_summary(data, project_desc, llm)
+    exec_presentation = _exec_summary_presentation(data, project_desc, llm)
+
+    # Phase 2: static sections
+    pricing = get_pricing(data["project_type"], data["language"])
+    sifide = get_sifide() if data["language"] == "Portuguese" else ""
+    work_agreement = get_work_agreement(
+        data["project_type"], data["language"], data.get("special_conditions", "")
+    )
+
+    # Phase 3: assemble in document order, dropping empty sections
+    sections = [
+        exec_summary,
         project_desc,
-        timeline_planning,
-        daredata_team,
+        timeline,
+        team,
         requirements,
         pricing,
         sifide,
-        work_agreement
-    ])
-    return proposal
-
-def generate_executive_summary(data: dict, description: str) -> str:
-    executive_summary_dict = {
-        "language": data["language"],
-        "project description": description,
-    }
-    messages = [
-        {"role": "system", "content": prompts.SYSTEM_PROMPT},
-        {"role": "user", "content": prompts.EXECUTIVE_SUMMARY + json.dumps(executive_summary_dict) }
+        work_agreement,
+        exec_presentation,
     ]
-    response = LLM.chat.completions.create(
-        model=settings.AZURE_OPENAI_DEPLOYMENT,
-        messages=messages,
+    return "\n\n".join(s.strip() for s in sections if s.strip())
+
+
+# ---------------------------------------------------------------------------
+# LLM section generators (private)
+# ---------------------------------------------------------------------------
+
+def _executive_summary(data: dict, description: str, llm) -> str:
+    payload = {"language": data["language"], "project description": description}
+    return llm.call(
+        prompts.SYSTEM_PROMPT,
+        prompts.EXECUTIVE_SUMMARY + json.dumps(payload),
         temperature=0.5,
     )
-    return response.choices[0].message.content
 
-def generate_project_description(data):
-    fields = [
-        "client_name",
-        "language",
-        "technology_focus",
-        "general_description",
-    ]
-    selected_data = {k: v for k, v in data.items() if k in fields}
-    content = prompts.PROJECT_DESCRIPTION + json.dumps(selected_data)
-    
-    if data["mlops"]=="Yes":
-        content = content + "\n\n" + prompts.MLOPS
-    if data["devops"]=="Yes":
-        content = content + "\n\n" + """
-        ---
-        DEVOPS BEST PRACTICES FRAMEWORK
-        Use as reference to enrich Solution Design. Extract and adapt relevant principles - do not copy verbatim. Integrate naturally using inline bold subheadings. Adapt to project's technology stack and context.
-        ---
 
-        """ + prompts.DEV_OPS
-    messages = [
-        {"role": "system", "content": prompts.SYSTEM_PROMPT},
-        {"role": "user", "content": content}
-    ]
-    
-    # append prompt if an extended description is necessary 
-    if data["extended_description"]==True:
-        messages.append({
-            "role": "user", "content": "Please provide an extended, more comprehensive project description. The description should be thorough and substantial, suitable for a large-scale client project."})
-    
-    response = LLM.chat.completions.create(
-        model=settings.AZURE_OPENAI_DEPLOYMENT,
-        messages=messages,
+def _project_description(data: dict, llm) -> str:
+    fields = ("client_name", "language", "technology_focus", "general_description")
+    content = prompts.PROJECT_DESCRIPTION + json.dumps(
+        {k: v for k, v in data.items() if k in fields}
     )
-    final_response = response.choices[0].message.content
-    if data["project_type"]=="Gen-OS":
-            content = final_response + "\n\n" + "Improve the text above by taking into account the following" + "\n\n"+ prompts.GENOS + "\n\n"+ selected_data["language"]
-            messages = [
-                {"role": "system", "content": prompts.SYSTEM_PROMPT},
-                {"role": "user", "content": content}
-            ]
-            response = LLM.chat.completions.create(
-                model=settings.AZURE_OPENAI_DEPLOYMENT,
-                messages=messages,
-            )
-            final_response = response.choices[0].message.content
-    
-    return final_response
+    content = append_frameworks(content, data, prompts)
 
-def generate_timeline_planning(data: dict) -> str:
-    fields = [
-        "language",
-        "planning",
-    ]
-    selected_data = {k: v for k, v in data.items() if k in fields}
+    extra = None
+    if data.get("extended_description"):
+        extra = [{"role": "user", "content": (
+            "Please provide an extended, more comprehensive project description. "
+            "The description should be thorough and substantial, suitable for a "
+            "large-scale client project."
+        )}]
 
-    messages = [
-        {"role": "system", "content": prompts.SYSTEM_PROMPT},
-        {"role": "user", "content": prompts.TIMELINE_AND_PLANNING + json.dumps(selected_data)}
-    ]
-    response = LLM.chat.completions.create(
-        model=settings.AZURE_OPENAI_DEPLOYMENT,
-        messages=messages,
+    result = llm.call(prompts.SYSTEM_PROMPT, content, extra_messages=extra)
+
+    if data["project_type"] == "Gen-OS":
+        gen_os_template = prompts.GEN_OS_PT if data["language"] == "Portuguese" else prompts.GEN_OS
+        adjustment_system = (
+            "Adjust the following subsection"
+            "\n\n###############\n\n"
+            + prompts.GEN_OS
+            + "\n\n###############\n\n"
+            "by simply adding a couple of sentences relating it to the project "
+            "the user will tell you."
+        )
+        adjustment = llm.call(adjustment_system, result)
+        result = result + "\n" + gen_os_template + adjustment
+
+    return result
+
+
+def _timeline_planning(data: dict, llm) -> str:
+    fields = ("language", "planning", "client_name")
+    payload = {k: v for k, v in data.items() if k in fields}
+    return llm.call(prompts.SYSTEM_PROMPT, prompts.TIMELINE_AND_PLANNING + json.dumps(payload))
+
+
+def _daredata_team(data: dict, llm) -> str:
+    fields = ("client_name", "language", "daredata_team", "project_type")
+    payload = {k: v for k, v in data.items() if k in fields}
+    return llm.call(prompts.SYSTEM_PROMPT, prompts.DAREDATA_TEAM + json.dumps(payload))
+
+
+def _requirements(data: dict, llm) -> str:
+    if not data.get("client_expectations", "").strip():
+        return ""
+    fields = ("client_name", "language", "client_expectations")
+    payload = {k: v for k, v in data.items() if k in fields}
+    return llm.call(prompts.SYSTEM_PROMPT, prompts.REQUIREMENTS_AND_PRICING + json.dumps(payload))
+
+
+def _exec_summary_presentation(data: dict, description: str, llm) -> str:
+    title = (
+        "## Apresentação do Sumário Executivo"
+        if data["language"] == "Portuguese"
+        else "## Executive Summary Presentation"
     )
-    return response.choices[0].message.content
-
-def generate_daredata_team(data: dict) -> str:
-    fields = [
-        "client_name",
-        "language",
-        "daredata_team"
-    ]
-    data = {k: v for k, v in data.items() if k in fields}
-    messages = [
-        {"role": "system", "content": prompts.SYSTEM_PROMPT},
-        {"role": "user", "content": prompts.DAREDATA_TEAM + json.dumps(data)}
-    ]
-    response = LLM.chat.completions.create(
-        model=settings.AZURE_OPENAI_DEPLOYMENT,
-        messages=messages,
-    )
-    return response.choices[0].message.content
-
-def generate_requirements(data: dict) -> str:
-    fields = [
-        "client_name",
-        "language",
-        "client_expectations",
-    ]
-    data = {k: v for k, v in data.items() if k in fields}
-    messages = [
-        {"role": "system", "content": prompts.SYSTEM_PROMPT},
-        {"role": "user", "content": prompts.REQUIREMENTS_AND_PRICING + json.dumps(data)}
-    ]
-    response = LLM.chat.completions.create(
-        model=settings.AZURE_OPENAI_DEPLOYMENT,
-        messages=messages,
-    )
-    return response.choices[0].message.content
-
-def generate_pricing(data):
-
-    if data["project_type"]=="Gen-OS" & data["language"]=="Portuguese":
-        content = """# 7. Preço
-### CAPEX
-Trata-se de um pagamento único pela configuração da solução: criação de agentes, integração com os sistemas internos e setup da infraestrutura.
-
-### OPEX
-O Gen-OS oferece observabolodade contínua do desempenho da solução em uso real e destaca onde é necessária uma intervenção.
-O Gen-OS regista e analisa automaticamente todas as interações. Detecta tópicos recorrentes, identifica padrões como defleições frequentes ou respostas de baixa confiança e sinaliza possíveis problemas. 
-O Gen-OS pode ser operado de duas maneiras:
-
-*Bring Your Own Cloud (BYOC)*
-A solução é integrada à sua infraestrutura, enquanto a DareData gere a camada Gen-OS e os processos operacionais.
-*Software as a Service (SaaS)*
-A DareData gere a solução completa em um tenant dedicado. Isso normalmente acarreta uma sobrecarga operacional mais alta devido ao gestão da infraestrutura.
-
-A assinatura do Gen-OS inclui:
-- Licença da plataforma com atualizações e upgrades contínuos
-- Monitorização, registo e análise de todas as interações de IA
-- Número de seats para tipos de utilizador (administradores e operadores)
-Além disso, os créditos Gen-OS são consumidos de forma flexível em chamadas LLM e agentes de IA e escalam com o uso. Cada crédito corresponde ao que acreditamos ser um pedido típico, de modo que os custos sejam mais claros para o utilizador final.
-
-### Suporte opcional
-Suporte padrão ou premium, dependendo do modelo selecionado.
-"""
-    if data["project_type"]=="Gen-OS" & data["language"]=="English":
-        content = """# 7. Price
-### CAPEX
-This is a one-time payment for the solution setup: agent building, system integration and infrastructure setup.
-
-
-### OPEX
-Gen-OS provides continuous visibility into how the solution performs in real usage and highlights where intervention is needed.
-Gen-OS automatically logs and analyses all interactions. It detects recurring topics, identifies patterns such as frequent escalations or low-confidence answers, and flags potential issues. 
-Gen-OS can be operated in two ways:
-
-*Bring Your Own Cloud (BYOC)*
-The solution is integrated into your infrastructure, while DareData manages the Gen-OS layer and operational processes.
-*Software as a Service (SaaS)*
-DareData manages the full solution in a dedicated tenant. This typically comes with higher operational overhead due to infrastructure management.
-
-The Gen-OS subscription includes:
-- Platform license with ongoing updates and upgrades
-- Monitoring, logging, and analytics for all AI interactions
-- Included user roles (admins and operators)
-
-Additionally, Gen-OS Credits are consumed flexibly across LLM calls and AI agents and scale with usage. Each credit corresponds to what we believe to be a typical request, such that costs are clearer to the final user.
-
-### Optional Support
-Standard or Premium Support, depending on the selected model.
-"""
-    if data["project_type"]!="Gen-OS" & data["language"]=="Portuguese":
-        content = "# 7. Preço"
-    if data["project_type"]!="Gen-OS" & data["language"]=="English":
-        content = "# 7. Price"
-    else:
-        raise "This should not happen"
-    
-    return content
-
-def generate_SIFIDE():
-    content = """
-A DareData é reconhecida com o Selo ID: Reconhecimento de Idoneidade. Isso significa acesso ao sistema de incentivos fiscais para R&D empresarial que visa aumentar a competitividade das empresas, apoiando os seus esforços em Pesquisa e Desenvolvimento através da dedução total das despesas de R&D na cobrança do IRC.
-Vários dos nossos clientes conseguem poupar significativamente na dedução do IRC (de 32,5% até 82,5%) porque somos uma empresa certificada. É necessário criar um projeto interno de I&D na sua organização, dentro do âmbito do SIFIDE.
-
-Nota: no primeiro ano em que se candidatar, tem garantido um desconto de 82,5%. A maioria das empresas já tem um departamento para estes processos, mas podemos ajudar com a proposta, se necessário.
-
-Exemplo de preço de um projeto:
-- Preço do projeto: 100k€
-- Despesa elegível ao abrigo do SIFIDE: 100k€
-- Possível benefício fiscal no IRC: 32,5k€-82,5k€
-
-Novo preço (através de desconto indireto via benefício fiscal IRC): 
-- Máximo: 100,000€ -> 67,500€
-- Mínimo:  100,000 € -> 17,500€
-
-O mínimo de 32,5% e o máximo de 82,5% dos possíveis benefícios fiscais no IRC baseiam-se no total das despesas elegíveis em I&D da sua organização!
-
-Melhores práticas:
-- Familiarize-se com os processos SIFIDE;
-- Tenha um projeto interno de I&D (ou crie um) para cada projeto DareData;
-- Inscreva-se no SIFIDE todos os anos, associando cada projeto DareData como uma despesa dentro do projeto interno de I&D da organização.
-
-    """
-    return content
-
-def generate_work_agreement(data: dict) -> str:
-    work_agreement_dict_en = {
-        "Closed Project": "Payment of 30% on acceptance of the proposal, payment of 70% at the end",
-        "Gen-OS": "Setup: Payment of 30% on acceptance of the proposal, payment of 70% at the end\n\nRun (36-month contract): Monthly Payment / Annual Payment (5% discount)",
-        "Co-Creation": "Payment based on work timesheets",
-    }
-    work_agreement_dict_pt = {
-        "Closed Project": "Pagamento do 30% aquando da aceitação da proposta, 70% no final",
-        "Gen-OS": "Setup: 30% aquando da aceitação da proposta, 70% no final\n\nRun (contrato de 36 meses): Pagamentos Mensais/ Anuais (5% desconto)",
-        "Co-Creation": "Pagamento com base em timesheets",
-    }
-
-    text_pt = "\n\n".join([
-        " ",
-        "# 8. Condições Comerciais",
-        "Acordo de trabalho",
-        "Todo o trabalho será efetuado remotamente (preferencialmente).",
-        """O presente Statement of Work baseia-se no âmbito, pressupostos, dependências e cronograma acordados no início do projeto. Caso surjam novos requisitos, alterações às especificações previamente definidas ou atrasos/modificações nas responsabilidades do Cliente (nomeadamente disponibilização de dados, acessos, validações ou recursos), a equipa de projeto iniciará um processo estruturado de análise de alteração para avaliar o respetivo impacto.
-
-Sempre que tal ocorra, será preparado um registo da alteração proposta, incluindo a avaliação do impacto em termos de esforço, prazo de execução, planeamento e condições comerciais. Quaisquer ajustes ao âmbito, marcos de pagamento ou honorários serão discutidos de forma transparente e formalizados por escrito antes do início dos trabalhos adicionais ou revistos.
-
-Este mecanismo visa garantir o alinhamento contínuo entre as partes à medida que o projeto evolui, salvaguardando a qualidade da entrega, a exequibilidade dos prazos e o equilíbrio comercial da colaboração.""",
-        " ",
-        "Condições de pagamento",
-        work_agreement_dict_pt[data["project_type"]],
-        "Pagamento devido no prazo de 30 dias a contar da data de apresentação da fatura",
-        "O IVA, se aplicável, deve ser aplicado a todos os valores da presente proposta",
-        " ",
-        "Validade",
-        "A presente proposta é válida por 30 dias úteis",
-        " ",
-        "Todas as faturas deverão ser pagas à:",
-        "Empresa: DareData, SA",
-        "NIF: PT 515362166",
-        "Endereço: AV FONTES PEREIRA MELO , 31 5 C LISBOA 1050-117 LISBOA"  
-    ])
-    
-    text_en = "\n\n".join([
-        " ",
-        "# 8. Commercial Conditions",
-        "Work agreement",
-        "All the work will be done remotely.",
-        """This Statement of Work is based on the scope, assumptions, dependencies, and timeline agreed at the start of the engagement. If new requirements arise, existing specifications change, or client-side inputs (e.g., data, access, approvals, or resources) are delayed or modified, the project team will initiate a structured change review to assess the impact.
-
-When such situations occur, the project team will document the proposed change and outline its implications in terms of effort, delivery timeline, sequencing, and commercial conditions. Any adjustments to scope, milestones, or fees will be discussed transparently and agreed in writing before the additional or modified work proceeds.
-
-This approach ensures that both parties remain aligned as the project evolves, protecting delivery quality, maintaining realistic timelines, and preserving a fair commercial balance throughout the engagement.""",
-        " ",
-        "Payment terms",
-        work_agreement_dict_en[data['project_type']],
-        "Payment due within 30 days of invoice issue date",
-        "VAT, where applicable, should be applied to all figures in this proposal",
-        " ",
-        "Validity",
-        "This proposal is valid for 30 working days",
-        " ",
-        "All bills should be paid to:",
-        "Company: DareData, SA",
-        "VAT Number: PT 515362166",
-        "Address: AV FONTES PEREIRA MELO , 31 5 C LISBOA 1050-117 LISBOA"
-    ])
-
-    if data["language"] == "English":
-        return text_en
-    if data["language"] == "Portuguese":
-        return text_pt
+    payload = {"language": data["language"], "project_description": description}
+    body = llm.call(prompts.EXEC_SUMMARY_PRESENTATION, json.dumps(payload), temperature=0.3)
+    return title + "\n\n" + body

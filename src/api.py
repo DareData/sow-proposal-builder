@@ -29,11 +29,15 @@ class ProposalRequest(BaseModel):
     project_type: str
     technology_focus: str
     general_description: str
+    extended_description: bool
     planning: str
-    client_stakeholders: str
     daredata_team: str
     client_expectations: str
     special_conditions: str
+    mlops: str
+    devops: str
+    llmops: str
+    wow: str
 
 class ProposalResponse(BaseModel):
     markdown: Optional[str] = None

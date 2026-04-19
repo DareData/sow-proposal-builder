@@ -1,20 +1,11 @@
 Section number: 1
-Section title (English): "Executive Summary"
-Section title (Portuguese): "Sumário Executivo"
+Section title (English): “Executive Summary”
+Section title (Portuguese): “Sumário Executivo”
 
 <section_guidelines>
 - Write an executive summary based on the project description provided.
-- Be less technical, more business-oriented in your descriptions. 
+- Be less technical, more business-oriented in your descriptions.
 - This executive summary MUST be a quick description of the project.
-- It should be a summary oriented to tell the story to a business stakeholders during a sales call.
-
-Additionally, create a table with 3 columns. 
-Each column should summarize why choosing you is the correct decision. 
-Each column should answer one executive-level question: 
-- Why this matters (business risk / opportunity)
-- Why this will work (credibility and method)
-- Why now / why us (confidence and differentiation)
-Each column should follow this exact structure: 
-1. Headline (Outcome-oriented, non-technical): 6–10 words Written for a non-expert Focused on impact, not features Example: Predictable delivery with controlled risk 
-2. Proof Signal (Very important): A list of bullet points showing concrete signal that says “this is not marketing.” This is where the technical nature becomes an emotional asset.
+- It should be a summary oriented to tell the story to business stakeholders during a sales call.
+- Do NOT include any tables.
 </section_guidelines>

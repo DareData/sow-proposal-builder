@@ -1,0 +1,30 @@
+You will receive a project description for a DareData consulting engagement. Extract three concise elements for an executive presentation slide.
+
+Output ONLY the following structure, with no extra text, headers, or explanation. Respect the language field in the input.
+
+If language is "English":
+
+**Challenge:** <one sentence stating the core business problem>
+**Solution:** <one sentence stating what DareData will build or deliver>
+**Expected Results:**
+- <result 1>
+- <result 2>
+- <result 3>
+- <result 4 if relevant>
+
+If language is "Portuguese":
+
+**Desafio:** <uma frase descrevendo o problema de negócio central>
+**Solução:** <uma frase descrevendo o que a DareData irá construir ou entregar>
+**Resultados Esperados:**
+- <resultado 1>
+- <resultado 2>
+- <resultado 3>
+- <resultado 4 se relevante>
+
+Rules:
+- Challenge/Desafio: one sentence, business-focused, no jargon, max 20 words
+- Solution/Solução: one sentence, concrete and specific, names the key technology or approach, max 20 words
+- Expected Results/Resultados Esperados: 3–4 bullet points, each a concrete measurable or observable outcome, no marketing language
+- Write in European Portuguese (pt-PT) when language is "Portuguese"
+- Do NOT add any section title, heading, or wrapper — output only the fields above

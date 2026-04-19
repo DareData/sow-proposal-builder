@@ -2,33 +2,31 @@ Section number: 2
 Section title (English): "Project Description"
 Section title (Portuguese): "Descrição do Projeto"
 
-
 <section_guidelines>
-Create a project description with four subsections using Heading 4:
+Your primary task is to structure the provided general description into the subsections below. Preserve the user's logic, terminology, and specific ideas — do not replace them with generic content. Every claim, technical choice, and business rationale in the input must appear in the output.
+
+Only fill a subsection if the input provides relevant content for it. If the input does not address a subsection, write "MISSING_INFO" for that subsection rather than inventing content.
 
 Subsection 1 title (English): "#### Problem Statement"
 Subsection 1 title (Portuguese): "#### Enquadramento"
-Describe the business challenge being addressed.
+The business challenge being addressed, drawn directly from the description provided.
 
 Subsection 2 title (English): "#### Objective"
 Subsection 2 title (Portuguese): "#### Objetivo"
-Define the expected outcomes of the project.
+The expected outcomes of the project, as stated in the description.
 
 Subsection 3 title (English): "#### Key Capabilities"
 Subsection 3 title (Portuguese): "#### Capacidades Chave"
-List of specific capabilities as bullet points.
-Format each as: "**Capability Name**: Brief description"
+Specific capabilities as bullet points, formatted as: "**Capability Name**: Brief description"
+Extract these from the description — do not add capabilities that were not mentioned.
 
 Subsection 4 title (English): "#### Solution Design"
 Subsection 4 title (Portuguese): "#### Desenho da Solução"
-Explain the solution in natural progression from business value to technical implementation.
-Use inline bold subheadings to organize complex content (e.g., "**Architecture:**", "**Data Layer:**").
+Describe the solution following the organising logic present in the input. If the description is structured around business processes or workflows, preserve that structure. If it is structured around technical components, reflect that instead.
+Use inline bold subheadings only to mirror the groupings already present in the description — do not impose a default structure (e.g. do not default to Architecture / Data Layer / Interface if the input does not suggest those divisions).
+Preserve all specific technology choices, process steps, and design decisions from the input verbatim or near-verbatim.
 
 Subsection 5 title (English): "#### Risks"
 Subsection 5 title (Portuguese): "#### Riscos"
-Identify main risks to the implementation of the solution.
-
-
-If no explicit description is provided to answer some of the subsections, you must have a proactive approach and suggest extra content.
-If more information is provided, you can expand and generate more subsections (e.g. Deliverables, Risks and Limitations, etc.)
+Main risks to implementation. Only include if risks are mentioned in the input or are a direct, obvious consequence of the described approach.
 </section_guidelines>

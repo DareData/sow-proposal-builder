@@ -1,0 +1,20 @@
+Ways of Working Framework
+The following principles define how DareData structures collaboration, delivery cadence, and stakeholder communication on engagements. Extract and adapt what is relevant to the project context — do not copy verbatim.
+
+Delivery Cadence
+Work is organised in fixed-length iterations (typically two weeks). Each iteration produces a demonstrable increment. A planning session opens each iteration; a review and retrospective close it. Mid-iteration scope changes are deferred to the next cycle unless they represent a critical blocker, protecting team focus and delivery predictability.
+
+Stakeholder Alignment
+A single point of contact on the client side is nominated as project champion — the person with authority to unblock decisions and validate outputs. Weekly written status updates cover: work completed, work planned, risks, and any pending client actions. A recurring demo session (fortnightly or monthly depending on project length) keeps senior stakeholders aligned without requiring their day-to-day involvement.
+
+Definition of Done
+A deliverable is considered done when it meets the agreed acceptance criteria, has passed relevant quality checks, and has been reviewed by the client's designated validator. No deliverable moves to the next phase without explicit sign-off. Ambiguity in acceptance criteria is resolved during planning, not during review.
+
+Communication Protocols
+Asynchronous-first communication for non-urgent matters (documentation, decision logs, status updates). Synchronous communication (calls, meetings) is reserved for decisions that require discussion. All decisions with downstream impact are logged in a shared decision register accessible to both teams. Escalation paths are defined upfront for scope, commercial, and technical disagreements.
+
+Knowledge Transfer
+Documentation is produced continuously, not as a final-phase activity. Each module or component delivered includes: purpose, inputs/outputs, known limitations, and operating instructions. Before project close, a structured handover session is held with the client's technical team. All artefacts, credentials, and repositories are transferred to client-owned infrastructure as a formal handover step.
+
+Quality and Continuous Improvement
+Retrospectives are blameless and action-oriented. Each retrospective produces at most three process changes for the next iteration. Recurring impediments are escalated to project leadership rather than absorbed indefinitely by the delivery team.

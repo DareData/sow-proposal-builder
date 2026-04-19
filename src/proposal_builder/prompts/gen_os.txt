@@ -1,31 +1,28 @@
 The Gen‑OS platform — an enterprise-grade operations framework designed to make GenAI solutions scalable, safe, and sustainable over time. Gen‑OS goes beyond one-off tooling by embedding governance, observability, and continuous improvement directly into the solution stack.
+
 Rather than placing the burden of operations on internal teams, Gen‑OS delivers a ready-to-use infrastructure for managing agents at scale — across business units, use cases, and deployment environments. It ensures consistent quality, auditability, and agility by providing a unified control layer for monitoring, escalation, and iteration.
-For business users, this means GenAI solutions that are trustworthy and continuously optimized without requiring technical overhead. For IT and innovation teams, it unlocks a modular platform to manage multiple agents under one roof — with centralized governance, usage visibility, and version control.
+
+For business users, this means GenAI solutions that are trustworthy and continuously optimised without requiring technical overhead. For IT and innovation teams, it unlocks a modular platform to manage multiple agents under one roof — with centralised governance, usage visibility, and version control.
+
 In contrast to isolated agent builds, Gen‑OS supports limitless horizontal scaling by allowing new use cases to plug into the same operational backbone — reducing total cost of ownership and accelerating time-to-value, without vendor lock-in.
+
 Gen-OS offers three core components:
-1 Monitor
-A centralized observability layer providing real-time insights into agent usage, accuracy, and behavior. Clients can track performance metrics, detect anomalies, and understand where agents excel or fail — without needing to build custom dashboards or monitoring tools.
-(Connect it to clients's project)
 
-2 Help
-A built-in issue handling and human-in-the-loop module that ensures safe and compliant decision-making. Failed or sensitive cases can be escalated for human review, validated, or routed to appropriate support teams. This enables trust and transparency in agent-driven processes. 
-(Connect it to clients's project)
+#### 1. Applications
 
-3 Improve
-A continuous improvement engine that analyzes agent failure patterns, proposes updates, and allows for safe testing of new logic or configurations. Instead of relying on manual retraining cycles, clients benefit from automated suggestions and version control — ensuring their agents get better with use. 
-(Connect it to clients's project)
+Stable, opinionated, and self-serve products to support the workforce. AI embedded in real workflows — not side experiments.
 
-Operational Models Comparison
-Traditional GenAI solutions often stagnate after launch, with operational responsibility falling entirely on the client. In contrast, Gen‑OS provides an enterprise ready turnkey operations and governance framework — making AI agents trustworthy, scalable, and easy to evolve.
-Importantly, Gen‑OS is vendor-neutral — it introduces no model or platform lock-in and can operate across diverse architectures.
+- **Assistant:** A chat interface that serves as a centralised system for all conversational agents. A workforce tool to improve individual and team productivity with RAG, web search, individual agent creation, file upload, collaboration, and memory.
+- **Service:** An omni-channel tool to support all customer service operations. Agents that connect with existing omni-channel systems to automate customer service enquiries and monitor performance across those agents.
+- **Supervisor:** A dedicated tool for human-in-the-loop case management, designed to enhance workflow automations with human intervention, observability, compliance, and cross-team collaboration. Failed or sensitive cases can be escalated for human review, validated, or routed to the appropriate support teams — ensuring safe and compliant decision-making in agent-driven processes.
 
-| Dimension | Client-Managed Operations | Integrated Gen-OS Platform |
-| --- | --- | --- |
-| Monitoring & Insights | Client must build custom dashboards for usage and errors | Built-in observability: real-time tracking of agent behavior, accuracy, and usage|
-| Issue Handling | Manual triage; unclear escalation paths | Structured case management with human-in-the-loop fallback |
-| Continuous Improvement | Requires manual updates and retraining | Auto-suggested improvements, versioning, safe test & deploy |
-| Responsibility | Fully client-owned operations | Shared responsibility with built-in governance & support tools |
-| Scalability | Difficult to replicate and manage across use cases | Scalable across workflows with consistent governance framework |
-| Resource Demand | High burden on internal teams | Reduced operational overhead with platform-enabled automation |
+#### 2. Intelligence
 
+Agents engineered to connect with real systems, maintained and improved over time. Out-of-the-box templates for fast, curated operations with full integration across the Gen-OS ecosystem (Applications and Platform). This includes agents, tools, workflows, and connectors to the most common ERPs and CRMs, with custom integrations available in the customisation phase.
 
+#### 3. Platform
+
+The Gen-OS platform serves as the central hub for governance, monitoring, auditability, human oversight, and continuous improvement. Key features include:
+
+- **Monitoring:** Observability of generative workflows — automatic resolution rates, human intervention per workflow step, FinOps tracking, and more. For conversational agents: historical topic detection, sentiment analysis by topic, usage and cost analytics.
+- **Improvement:** A continuous improvement engine that analyses agent failure patterns, proposes updates, and enables safe testing of new logic or configurations. Triggered manually via collaborator issue tickets or automatically through content audits (knowledge gap detection based on content and conversation history), evaluation set generation, and more.

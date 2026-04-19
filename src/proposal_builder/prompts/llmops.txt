@@ -1,0 +1,20 @@
+LLMOps Operational Framework
+Production GenAI systems require a disciplined operational layer that goes beyond model selection. The following principles should be extracted and integrated naturally into the Solution Design where relevant to the project context.
+
+Prompt and Chain Management
+All prompts are versioned assets, not inline strings. Changes to prompt logic follow the same review cycle as code changes. Prompt templates are stored in a dedicated registry with metadata covering model target, expected input schema, and known failure modes. When chain complexity grows — multiple LLM steps, retrieval augmentation, tool calls — each step is modularised and testable in isolation so that regressions can be attributed precisely.
+
+Evaluation and Quality Gates
+Every LLM-powered feature ships with a domain-specific evaluation suite covering correctness, groundedness, tone, and safety. Evaluation sets are maintained by the team and expanded continuously from production failure cases. Before any prompt or model change reaches production, it must pass a defined threshold on the existing suite. Where ground-truth labels are unavailable, LLM-as-judge evaluation is used with documented bias mitigations.
+
+Observability and Cost Control
+Each LLM call is instrumented with structured logs capturing: model, prompt version, token counts, latency, and outcome classification. Dashboards track cost per use case and per user cohort, enabling proactive budget governance. Semantic caching is applied where input distributions allow it, reducing redundant API calls. Alerting covers latency degradation, error rate spikes, and cost anomalies.
+
+Safety and Guardrails
+Input and output guardrails are implemented as a dedicated middleware layer, not embedded in prompts. Guardrails cover: PII detection and redaction, prompt injection resistance, topic boundary enforcement, and hallucination likelihood scoring. High-risk outputs are flagged for human review before delivery; the threshold is configurable per use case.
+
+Deployment and Model Lifecycle
+Model upgrades are deployed through A/B or shadow testing, never as direct cutover. Performance on production traffic is compared against the baseline before full rollout. When a model provider updates a model version, the team is notified automatically and a regression test is triggered. Rollback procedures are documented and tested.
+
+RAG Pipeline Quality
+For retrieval-augmented systems, evaluation covers both retrieval quality (recall, precision at K) and generation quality (faithfulness to retrieved context, answer completeness). Chunking strategy, embedding model, and retrieval parameters are treated as tuneable hyperparameters with their own evaluation loop. Knowledge base freshness is monitored and stale documents are flagged or expired automatically.

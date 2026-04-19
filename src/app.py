@@ -9,6 +9,7 @@ from streamlit_helpers import (
     render_proposal_form,
     render_footer
 )
+from config import settings
 from proposal_builder.agent import generate_proposal
 
 def main():
@@ -62,13 +63,7 @@ def generate_and_display_proposal(proposal_data):
     """
     with st.spinner("Generating proposal... This may take a moment."):
         try:
-            # Submit to API
-            #response = requests.post(f"{API_URL}/proposals/", json=proposal_data)
-            #response.raise_for_status()
-            #proposal_info = response.json()
-           
-            # Store the markdown and proposal data
-            #markdown_content = proposal_info.get("markdown", "")
+            settings.validate()
             markdown_content = generate_proposal(proposal_data)
             st.session_state["proposal_markdown"] = markdown_content
             st.session_state["last_proposal_data"] = proposal_data
