@@ -180,7 +180,17 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             options=["Co-Creation", "Gen-OS", "Closed Project"],
             key="project_type"
         )
-        
+
+        if project_type == "Gen-OS":
+            st.markdown("**Gen-OS Components** *(Platform is always included)*")
+            gc1, gc2, gc3 = st.columns(3)
+            with gc1:
+                gen_os_assistant = st.checkbox("Assistant", key="gen_os_assistant", value=True)
+            with gc2:
+                gen_os_supervisor = st.checkbox("Supervisor", key="gen_os_supervisor", value=True)
+            with gc3:
+                gen_os_service = st.checkbox("Service", key="gen_os_service", value=True)
+
         st.markdown('<h2 class="section-header">Project Details</h2>', unsafe_allow_html=True)
                 
         technology_focus = st.selectbox(
@@ -278,6 +288,10 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "llmops": llmops,
             "wow": wow,
         }
+        if project_type == "Gen-OS":
+            proposal_data["gen_os_assistant"] = gen_os_assistant
+            proposal_data["gen_os_supervisor"] = gen_os_supervisor
+            proposal_data["gen_os_service"] = gen_os_service
     
     return proposal_data, submitted
 

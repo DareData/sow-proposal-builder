@@ -1,0 +1,13 @@
+O Service é a solução de IA para conversas com clientes em canais de atendimento. O agente responde a perguntas, resolve pedidos e escala para um humano quando a confiança baixa ou a conversa o exige.
+
+Ao contrario de chatbots genéricos que se montam em dias mas falham sem controlo, o Service é construído para canais onde uma resposta errada tem consequências reais: compliance, reputação, reembolsos. Cada resposta é fundamentada em fontes aprovadas, citada e auditável.
+
+Capacidades em produção:
+
+Retrieval com disciplina. O agente só responde quando encontra a informação na base de conhecimento. Sem recuperação, sem resposta. Não inventa.
+Respostas citadas. Cada resposta carrega a fonte e a passagem de origem, rastreável por equipas de compliance e auditoria.
+Execução de acções. Consultar estado de encomenda, alterar morada, cancelar subscrição, tudo dentro da conversa, ligado aos sistemas do cliente.
+Memória. Continuidade entre sessões para clientes recorrentes.
+Na plataforma GenOS, a equipa de operações tem visibilidade completa: analytics de conversas e escalamentos, tópicos recorrentes, revisão humana de qualidade, auditoria de conhecimento para identificar lacunas, e testes automatizados para prevenir regressões.
+
+O Service é hoje deployado via chat widget embebível. Voz, WhatsApp e email estão no roadmap como canais futuros.

@@ -1,0 +1,17 @@
+Supervisor is GenOS’s workflow automation solution. It processes high-volume cases end-to-end, with human intervention only at decision points where it is required.
+
+The model is asymmetrical by design: the majority of cases run automatically through workflows built by DareData in collaboration with the client. The operator intervenes when judgement, approval or review is required. The economic driver is the volume of cases processed without human intervention.
+
+Each workflow combines four core components:
+
+Data extraction. Transforms unstructured inputs (documents, forms, emails) into structured data for processing.
+Validation. Checks the extracted data against rules and schemas before proceeding.
+Business rules. Decision logic that determines how each case is routed, escalated or resolved automatically.
+System integrations. Reading from and writing to enterprise systems (ERP, CRM, HRIS) as part of the flow.
+Workflows are not self-service. They are built by DareData in collaboration with each client, encoding the specific logic of the operation. The client provides the process; the engineering team provides the workflow.
+
+Within the application, the operator works with two interfaces:
+
+Case Resolution & Review. An individual review area where a human intervenes with the full context of the case.
+Case Inbox. A unified queue of all AI-generated cases, prioritised by type, status and urgency.
+GenOS ensures full visibility: resolution and throughput analytics, an activity log for every decision (whether automated or human), and actionable alerts when failure patterns emerge.

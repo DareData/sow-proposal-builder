@@ -1,0 +1,13 @@
+Service is the AI solution for customer conversations across service channels. The agent answers questions, resolves enquiries and escalates to a human when confidence levels drop or the conversation requires it.
+
+Unlike generic chatbots that can be set up in a matter of days but fail without any control, Service is built for channels where an incorrect response has real-world consequences: compliance, reputation, refunds. Every response is based on approved, cited and auditable sources.
+
+Capabilities in production:
+
+Disciplined retrieval. The agent only responds when it finds the information in the knowledge base. No retrieval, no response. It does not make things up.
+Cited responses. Each response includes the source and the original passage, traceable by compliance and audit teams.
+Action execution. Check order status, change address, cancel subscription – all within the conversation, linked to the client’s systems.
+Memory. Continuity between sessions for returning customers.
+On the GenOS platform, the operations team has full visibility: analytics on conversations and escalations, recurring topics, human quality review, knowledge audits to identify gaps, and automated tests to prevent regressions.
+
+The Service is currently deployed via an embeddable chat widget. Voice, WhatsApp and email are on the roadmap as future channels.

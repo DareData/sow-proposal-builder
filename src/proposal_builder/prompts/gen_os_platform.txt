@@ -1,0 +1,26 @@
+GenOS is the control framework that underpins all the solutions: Assistant, Service and Supervisor. It is what transforms each of them from a useful demonstration into an AI operation ready for enterprise-level production.
+
+GenOS is not sold separately. It is included in every implementation by design. It is organised into four modules that cover the entire lifecycle of an AI operation:
+
+Govern: who can do what
+
+Access control, authentication, permissions and policies, shared across all solutions. Set once, applied to everything. Support for federation with the customer’s Identity Provider (Entra ID, Keycloak). A single security audit covers all deployed agents and workflows, regardless of how many solutions are running on the platform.
+
+Monitor: what’s happening
+
+Visibility into the performance of each agent or workflow in production. Usage and adoption analytics, resolution rates, processing volumes, scaling patterns. Each solution has its own monitoring view tailored to what matters: conversations in the Assistant, topics and escalations in the Service, case throughput in the Supervisor.
+
+Guide: how to configure and troubleshoot
+
+Tools for shaping agent behaviour. Knowledge source management (files, web scraping, integrations with SharePoint, Google Drive, Notion). Test conversations to validate behaviour before and after changes. Knowledge audits to identify gaps and out-of-date content based on actual usage.
+
+Improve: how to improve over time
+
+Feedback cycles that close the loop between production and improvement. Human review of conversations to identify quality issues. Automated testing against defined evaluation criteria. Actionable issues that highlight recurring failure patterns. The system learns from real-world usage; it does not degrade silently.
+
+What this means in practice for the customer:
+
+A single security and compliance review covers all solutions. Adding a new agent, a new team or a new solution does not trigger a new procurement cycle.
+Centralised visibility for leadership: what is deployed, who has access, how it is performing, where it is failing.
+Each new deployment costs less than the previous one because the foundation is already approved and operational.
+AI does not degrade silently. GenOS makes problems visible before they turn into complaints.

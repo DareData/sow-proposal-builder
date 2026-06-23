@@ -47,4 +47,7 @@ Key distinctions:
 - Use pt-PT vocabulary always (âmbito, monitorizar, gerir, equipa, utilizador, recolha, pesquisa)
 - Avoid pt-BR variants (escopo, monitorar, gerenciar, equipe, usuário, coleta, busca)
 - Maintain formal business tone with constructions like "propomos", "iremos", "será efetuada"
+
+Fixed translations (do not translate literally):
+- "Tech Specialist Network" → "Rede de Especialistas Técnicos" (never "Especialista Técnico em Redes")
 </language_guidelines>

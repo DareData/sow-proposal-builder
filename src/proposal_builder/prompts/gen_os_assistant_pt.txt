@@ -1,0 +1,12 @@
+O Assistant é o espaço de trabalho onde os colaboradores interagem com IA, conhecimento da empresa e sistemas internos, de forma segura, transparente e controlada.
+
+Ao contrario de assistentes genéricos construídos para trabalho de conhecimento geral, o Assistant é desenhado para funcionar dentro das operações reais da empresa: ligado às fontes de informação certas, com permissões adequadas, e com um ciclo de melhoria contínua baseado no uso real.
+
+Três configurações de agente cobrem diferentes necessidades, sem hierarquia entre elas:
+
+Agente Pessoal. Produtividade individual desde o primeiro dia. Análise de documentos, cálculos, pesquisa web, resumos, rascunhos. Não precisa de configuração de empresa para começar.
+Agentes de Empresa. Ligados ao conhecimento partilhado da organização (políticas, procedimentos, documentação interna). Qualquer colaborador pergunta e recebe respostas citadas e rastreáveis. Configurações comuns: RH, Finanças, IT.
+Agentes de Equipa. Especializados para uma função ou workflow específico, com acesso profundo a sistemas operacionais (CRM, ERP, APIs internas). Configurações comuns: Vendas, Laboratório, Operações, Suporte.
+Todos os agentes partilham as mesmas capacidades base: processamento de documentos (PDF, Excel, imagens, OCR), execução de código, pesquisa web, memória entre sessões, e integração com ferramentas empresariais. O que os distingue é o âmbito: a quem servem e a que conhecimento e sistemas acedem.
+
+O Assistant corre sobre o GenOS, a plataforma que garante governação, monitorização e melhoria contínua de toda a operação de IA.

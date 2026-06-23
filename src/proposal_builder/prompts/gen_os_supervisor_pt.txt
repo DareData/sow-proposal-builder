@@ -1,0 +1,17 @@
+O Supervisor é a solução de automação de workflows do GenOS. Processa casos em volume, de ponta a ponta, com intervenção humana apenas nos pontos de decisão que o exigem.
+
+O padrão é assimétrico por desenho: a maioria dos casos corre automaticamente através de workflows construídos pela DareData com o cliente. O operador intervém quando é preciso julgamento, aprovação ou revisão. O motor económico é o volume que corre sem ele.
+
+Cada workflow combina quatro primitivas:
+
+Extração de dados. Transforma inputs não estruturados (documentos, formulários, emails) em dados estruturados para processamento.
+Validação. Verifica os dados extraídos contra regras e schemas antes de avançar.
+Regras de negócio. Lógica de decisão que determina como cada caso é encaminhado, escalado ou resolvido automaticamente.
+Integrações com sistemas. Leitura e escrita em sistemas empresariais (ERP, CRM, HRIS) como parte do fluxo.
+Os workflows não são self-service. São construídos pela DareData com cada cliente, codificando a lógica específica da operação. O cliente traz o processo; a equipa de engenharia traz o workflow.
+
+Na aplicação, o operador trabalha com duas superfícies:
+
+Case Resolution & Review. Espaço de revisão individual onde o humano intervém com contexto completo do caso.
+Case Inbox. Fila unificada de todos os casos gerados por IA, priorizados por tipo, estado e urgência.
+O GenOS garante visibilidade total: analytics de resolução e throughput, activity log de cada decisão (automática ou humana), e issues accionáveis quando padrões de falha emergem.

@@ -88,11 +88,11 @@ def _project_description(data: dict, llm) -> str:
     result = llm.call(prompts.SYSTEM_PROMPT, content, extra_messages=extra)
 
     if data["project_type"] == "Gen-OS":
-        gen_os_template = prompts.GEN_OS_PT if data["language"] == "Portuguese" else prompts.GEN_OS
+        gen_os_template = _build_gen_os_template(data, prompts)
         adjustment_system = (
             "Adjust the following subsection"
             "\n\n###############\n\n"
-            + prompts.GEN_OS
+            + gen_os_template
             + "\n\n###############\n\n"
             "by simply adding a couple of sentences relating it to the project "
             "the user will tell you."
@@ -121,6 +121,18 @@ def _requirements(data: dict, llm) -> str:
     fields = ("client_name", "language", "client_expectations")
     payload = {k: v for k, v in data.items() if k in fields}
     return llm.call(prompts.SYSTEM_PROMPT, prompts.REQUIREMENTS_AND_PRICING + json.dumps(payload))
+
+
+def _build_gen_os_template(data: dict, prompts) -> str:
+    is_pt = data["language"] == "Portuguese"
+    parts = [prompts.GEN_OS_PLATFORM_PT if is_pt else prompts.GEN_OS_PLATFORM]
+    if data.get("gen_os_assistant"):
+        parts.append(prompts.GEN_OS_ASSISTANT_PT if is_pt else prompts.GEN_OS_ASSISTANT)
+    if data.get("gen_os_supervisor"):
+        parts.append(prompts.GEN_OS_SUPERVISOR_PT if is_pt else prompts.GEN_OS_SUPERVISOR)
+    if data.get("gen_os_service"):
+        parts.append(prompts.GEN_OS_SERVICE_PT if is_pt else prompts.GEN_OS_SERVICE)
+    return "\n\n".join(p for p in parts if p.strip())
 
 
 def _exec_summary_presentation(data: dict, description: str, llm) -> str:

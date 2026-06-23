@@ -1,0 +1,13 @@
+The Assistant is the workspace where employees interact with AI, company knowledge and internal systems in a secure, transparent and controlled manner.
+
+Unlike generic assistants built for general knowledge tasks, the Assistant is designed to operate within the company’s actual operations: connected to the right information sources, with appropriate permissions, and with a cycle of continuous improvement based on real-world usage.
+
+Three agent configurations cater to different needs, with no hierarchy between them:
+
+Personal Agent. Individual productivity from day one. Document analysis, calculations, web searches, summaries, drafts. No company configuration is required to get started.
+Company Agents. Linked to the organisation’s shared knowledge (policies, procedures, internal documentation). Any employee can ask a question and receive cited, traceable answers. Common configurations: HR, Finance, IT.
+Team Agents. Specialised for a specific role or workflow, with deep access to operational systems (CRM, ERP, internal APIs). Common configurations: Sales, Laboratory, Operations, Support.
+
+All agents share the same core capabilities: document processing (PDF, Excel, images, OCR), code execution, web search, cross-session memory, and integration with business tools. What sets them apart is their scope: who they serve and what knowledge and systems they access.
+
+The Assistant runs on GenOS, the platform that ensures governance, monitoring and continuous improvement of the entire AI operation.

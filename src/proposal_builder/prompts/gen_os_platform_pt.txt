@@ -1,0 +1,26 @@
+O GenOS é o plano de controlo que opera por baixo de todas as soluções: Assistant, Service e Supervisor. É o que transforma cada uma delas de uma demonstração útil numa operação de IA pronta para produção empresarial.
+
+O GenOS não se vende separado. Está incluído em cada implementação por construção. Organiza-se em quatro módulos que cobrem todo o ciclo de vida de uma operação de IA:
+
+Govern: quem pode fazer o quê
+
+Controlo de acessos, autenticação, permissões e políticas, partilhado por todas as soluções. Definido uma vez, aplicado a tudo. Suporte para federação com o Identity Provider do cliente (Entra ID, Keycloak). Uma única revisão de segurança cobre todos os agentes e workflows deployados, independentemente de quantas soluções corram na plataforma.
+
+Monitor: o que está a acontecer
+
+Visibilidade sobre o desempenho de cada agente ou workflow em produção. Analytics de uso e adopção, taxas de resolução, volumes de processamento, padrões de escalamento. Cada solução tem a sua vista de monitorização adaptada ao que importa: conversas no Assistant, tópicos e escalamentos no Service, throughput de casos no Supervisor.
+
+Guide: como configurar e corrigir
+
+Ferramentas para moldar o comportamento dos agentes. Gestão de fontes de conhecimento (ficheiros, web scraping, integrações com SharePoint, Google Drive, Notion). Conversas de teste para validar o comportamento antes e depois de alterações. Auditoria de conhecimento para identificar lacunas e conteúdo desactualizado com base no uso real.
+
+Improve: como melhorar com o tempo
+
+Ciclos de feedback que fecham o loop entre produção e melhoria. Revisão humana de conversas para identificar problemas de qualidade. Testes automatizados contra critérios de avaliação definidos. Issues accionáveis que surfaçam padrões de falha recorrentes. O sistema aprende com o uso real, não degrada em silêncio.
+
+O que isto significa na prática para o cliente:
+
+Uma única revisão de segurança e compliance cobre todas as soluções. Adicionar um novo agente, uma nova equipa ou uma nova solução não dispara um novo ciclo de procurement.
+Visibilidade centralizada para a liderança: o que está deployado, quem tem acesso, como está a funcionar, onde está a falhar.
+Cada novo deployment custa menos que o anterior porque a fundação já está aprovada e operacional.
+A IA não degrada em silêncio. O GenOS torna visíveis os problemas antes de se tornarem reclamações.

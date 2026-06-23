@@ -27,6 +27,14 @@ src/
     │   ├── requirements_and_pricing.txt
     │   ├── gen_os.txt
     │   ├── gen_os_pt.txt
+    │   ├── gen_os_platform.txt
+    │   ├── gen_os_platform_pt.txt
+    │   ├── gen_os_assistant.txt
+    │   ├── gen_os_assistant_pt.txt
+    │   ├── gen_os_supervisor.txt
+    │   ├── gen_os_supervisor_pt.txt
+    │   ├── gen_os_service.txt
+    │   ├── gen_os_service_pt.txt
     │   ├── mlops.txt
     │   ├── devops.txt
     │   ├── llmops.txt
@@ -96,6 +104,11 @@ All keys passed from `render_proposal_form()`:
     "devops":               "Yes" | "No",
     "llmops":               "Yes" | "No",
     "wow":                  "Yes" | "No",   # Ways of Working
+    # Gen-OS only (present when project_type == "Gen-OS"):
+    "gen_os_assistant":     bool,           # default True
+    "gen_os_supervisor":    bool,           # default True
+    "gen_os_service":       bool,           # default True
+    # Platform is always included — no flag needed
 }
 ```
 
