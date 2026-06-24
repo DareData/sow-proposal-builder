@@ -58,7 +58,7 @@ src/
 `generate_proposal()` runs in three explicit phases:
 
 **Phase 1 — LLM sections** (computed in dependency order):
-1. `_project_description` — builds prompt, appends enabled frameworks via `append_frameworks()`, optional Gen-OS second pass
+1. `_project_description` — builds prompt, appends enabled frameworks via `append_frameworks()`, optional GenOS second pass
 2. `_timeline_planning`
 3. `_daredata_team`
 4. `_requirements` — skipped entirely (no LLM call) when `client_expectations` is empty
@@ -92,7 +92,7 @@ All keys passed from `render_proposal_form()`:
     "client_name":          str,
     "language":             "Portuguese" | "English",
     "project_name":         str,
-    "project_type":         "Co-Creation" | "Gen-OS" | "Closed Project",
+    "project_type":         "Co-Creation" | "GenOS" | "Closed Project",
     "technology_focus":     "AWS" | "GCP" | "Azure" | "OnPrem",
     "general_description":  str,
     "extended_description": bool,   # True → second LLM pass for longer description
@@ -104,7 +104,7 @@ All keys passed from `render_proposal_form()`:
     "devops":               "Yes" | "No",
     "llmops":               "Yes" | "No",
     "wow":                  "Yes" | "No",   # Ways of Working
-    # Gen-OS only (present when project_type == "Gen-OS"):
+    # GenOS only (present when project_type == "GenOS"):
     "gen_os_assistant":     bool,           # default True
     "gen_os_supervisor":    bool,           # default True
     "gen_os_service":       bool,           # default True

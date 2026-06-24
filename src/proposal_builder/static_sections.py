@@ -9,7 +9,7 @@ from __future__ import annotations
 
 def get_pricing(project_type: str, language: str) -> str:
     from config import templates
-    if project_type == "Gen-OS":
+    if project_type == "GenOS":
         key = "PRICING_GEN_OS_PT" if language == "Portuguese" else "PRICING_GEN_OS_EN"
     else:
         key = "PRICING_STANDARD_PT" if language == "Portuguese" else "PRICING_STANDARD_EN"

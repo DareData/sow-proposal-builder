@@ -177,12 +177,12 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         
         project_type = st.selectbox(
             "**Project Type**",
-            options=["Co-Creation", "Gen-OS", "Closed Project"],
+            options=["Co-Creation", "GenOS", "Closed Project"],
             key="project_type"
         )
 
-        if project_type == "Gen-OS":
-            st.markdown("**Gen-OS Components** *(Platform is always included)*")
+        if project_type == "GenOS":
+            st.markdown("**GenOS Components** *(Platform is always included)*")
             gc1, gc2, gc3 = st.columns(3)
             with gc1:
                 gen_os_assistant = st.checkbox("Assistant", key="gen_os_assistant", value=True)
@@ -220,7 +220,7 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
         daredata_team = st.text_area(
             "**DareData Team**",
             key="daredata_team",
-            help="Include Principal (PM), Tech Specialists (quality), Engineers (implementation), and Gen-OS Team if applicable"
+            help="Include Principal (PM), Tech Specialists (quality), Engineers (implementation), and GenOS Team if applicable"
         )
         
         st.markdown('<h2 class="section-header">Additional Information</h2>', unsafe_allow_html=True)
@@ -288,7 +288,7 @@ def render_proposal_form() -> Tuple[Dict[str, Any], bool]:
             "llmops": llmops,
             "wow": wow,
         }
-        if project_type == "Gen-OS":
+        if project_type == "GenOS":
             proposal_data["gen_os_assistant"] = gen_os_assistant
             proposal_data["gen_os_supervisor"] = gen_os_supervisor
             proposal_data["gen_os_service"] = gen_os_service

@@ -10,6 +10,26 @@ When such situations occur, the project team will document the proposed change a
 
 This approach ensures that both parties remain aligned as the project evolves, protecting delivery quality, maintaining realistic timelines, and preserving a fair commercial balance throughout the engagement.
 
+Engagement Assumptions
+
+**Client Responsibilities**
+
+- **Product Owner**: The Client shall designate a Product Owner with decision authority over requirements and deliverables, domain knowledge of the business processes, a minimum availability of 12-15 hours per week, and the ability to liaise with technical teams for answers on data sources, integrations, and APIs within agreed timelines.
+
+- **API & System Readiness**: The Client shall provide all APIs, endpoints, and system interfaces in a functional and documented state (including credentials, sandbox environments, and technical documentation such as OpenAPI specs) according to the agreed project timeline.
+
+- **Access & Environment Provisioning**: The Client shall grant the project team timely access to all required systems, platforms, databases, repositories, and infrastructure environments (development, staging, production).
+
+- **Data Provision & Quality**: The Client shall supply all required datasets and training data in the agreed format, volume, and quality standards by the dates specified in the project plan. Unreliable or incomplete data directly impacts solution quality.
+
+- **Subject Matter Expertise**: The Client shall make available qualified subject matter experts for requirements clarification, acceptance testing, and domain validation.
+
+**DareData Responsibilities**
+
+- **Dependency Register**: At project kickoff, both parties will co-create a Dependency Register listing every client-side input (APIs, data, access, decisions, approvals) mapped to the milestone it blocks. This register will be reviewed in every status meeting.
+
+- **Transparent Communication**: DareData commits to flagging dependency risks as early as they are identified, proposing mitigation options and maintaining open communication throughout the engagement.
+
 Payment terms
 
 {{PAYMENT_TERMS}}

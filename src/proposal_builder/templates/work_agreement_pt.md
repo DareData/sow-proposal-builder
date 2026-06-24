@@ -10,6 +10,26 @@ Sempre que tal ocorra, será preparado um registo da alteração proposta, inclu
 
 Este mecanismo visa garantir o alinhamento contínuo entre as partes à medida que o projeto evolui, salvaguardando a qualidade da entrega, a exequibilidade dos prazos e o equilíbrio comercial da colaboração.
 
+Pressupostos do Projeto
+
+**Responsabilidades do Cliente**
+
+- **Product Owner**: O Cliente deverá designar um Product Owner com autoridade para aprovar requisitos e entregáveis, conhecimento dos processos de negócio, disponibilidade mínima de 12-15 horas por semana e capacidade de ligação com as equipas técnicas para obter respostas sobre fontes de dados, integrações e APIs dentro dos prazos acordados.
+
+- **APIs e Sistemas**: O Cliente deverá disponibilizar todas as APIs, endpoints e interfaces de sistemas num estado funcional e documentado (incluindo credenciais, ambientes de teste e documentação técnica como especificações OpenAPI), de acordo com o cronograma acordado.
+
+- **Acessos e Ambientes**: O Cliente deverá conceder à equipa de projeto acesso atempado a todos os sistemas, plataformas, bases de dados, repositórios e ambientes de infraestrutura necessários (desenvolvimento, staging, produção).
+
+- **Dados e Qualidade**: O Cliente deverá fornecer todos os datasets e dados de treino no formato, volume e padrões de qualidade acordados, nas datas especificadas no plano de projeto. Dados incompletos ou pouco fiáveis impactam diretamente a qualidade da solução.
+
+- **Especialistas de Domínio**: O Cliente deverá disponibilizar especialistas qualificados para esclarecimento de requisitos, testes de aceitação e validação de domínio.
+
+**Responsabilidades da DareData**
+
+- **Registo de Dependências**: No arranque do projeto, ambas as partes criarão um Registo de Dependências listando todos os inputs do lado do Cliente (APIs, dados, acessos, decisões, aprovações) mapeados ao milestone que bloqueiam. Este registo será revisto em cada reunião de status.
+
+- **Comunicação Transparente**: A DareData compromete-se a sinalizar riscos de dependências assim que identificados, propondo opções de mitigação e mantendo comunicação aberta ao longo do projeto.
+
 Condições de pagamento
 
 {{PAYMENT_TERMS}}

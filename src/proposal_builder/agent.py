@@ -87,7 +87,7 @@ def _project_description(data: dict, llm) -> str:
 
     result = llm.call(prompts.SYSTEM_PROMPT, content, extra_messages=extra)
 
-    if data["project_type"] == "Gen-OS":
+    if data["project_type"] == "GenOS":
         gen_os_template = _build_gen_os_template(data, prompts)
         adjustment_system = (
             "Adjust the following subsection"
@@ -125,13 +125,14 @@ def _requirements(data: dict, llm) -> str:
 
 def _build_gen_os_template(data: dict, prompts) -> str:
     is_pt = data["language"] == "Portuguese"
-    parts = [prompts.GEN_OS_PLATFORM_PT if is_pt else prompts.GEN_OS_PLATFORM]
+    parts = []
     if data.get("gen_os_assistant"):
         parts.append(prompts.GEN_OS_ASSISTANT_PT if is_pt else prompts.GEN_OS_ASSISTANT)
     if data.get("gen_os_supervisor"):
         parts.append(prompts.GEN_OS_SUPERVISOR_PT if is_pt else prompts.GEN_OS_SUPERVISOR)
     if data.get("gen_os_service"):
         parts.append(prompts.GEN_OS_SERVICE_PT if is_pt else prompts.GEN_OS_SERVICE)
+    parts.append(prompts.GEN_OS_PLATFORM_PT if is_pt else prompts.GEN_OS_PLATFORM)
     return "\n\n".join(p for p in parts if p.strip())
 
 
