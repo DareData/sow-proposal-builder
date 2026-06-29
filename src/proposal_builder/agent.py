@@ -78,36 +78,63 @@ def _executive_summary(data: dict, description: str, llm) -> str:
 
 
 def _project_description(data: dict, llm) -> str:
-    fields = ("client_name", "language", "technology_focus", "general_description")
-    content = prompts.PROJECT_DESCRIPTION + json.dumps(
-        {k: v for k, v in data.items() if k in fields}
+    fields = (
+        "client_name", "language", "technology_focus",
+        "general_description", "project_type", "project_name",
     )
-    content = append_frameworks(content, data, prompts)
+    payload = {k: v for k, v in data.items() if k in fields}
+    base_input = json.dumps(payload)
 
-    extra = None
-    if data.get("extended_description"):
-        extra = [{"role": "user", "content": (
-            "Please provide an extended, more comprehensive project description. "
-            "The description should be thorough and substantial, suitable for a "
-            "large-scale client project."
-        )}]
-
-    result = llm.call(prompts.SYSTEM_PROMPT, content, extra_messages=extra)
-
+    gen_os_block = ""
     if data["project_type"] == "GenOS":
-        gen_os_template = _build_gen_os_template(data, prompts)
-        adjustment_system = (
-            "Adjust the following subsection"
-            "\n\n###############\n\n"
-            + gen_os_template
-            + "\n\n###############\n\n"
-            "by simply adding a couple of sentences relating it to the project "
-            "the user will tell you."
+        gen_os_block = (
+            "\n\n---\nGENOS CONTEXT\n"
+            "The project is built on DareData's GenOS platform. "
+            "Integrate the following component descriptions naturally — "
+            "do not create a separate GenOS section.\n---\n\n"
+            + _build_gen_os_template(data, prompts)
         )
-        adjustment = llm.call(adjustment_system, result)
-        result = result + "\n" + gen_os_template + adjustment
 
-    return result
+    frameworks_block = append_frameworks("", data, prompts)
+
+    context = base_input + gen_os_block + frameworks_block
+    max_tokens = 2048 if data.get("extended_description") else 1024
+
+    # Subsection 1: Business Context
+    business = llm.call(
+        prompts.PD_BUSINESS_CONTEXT,
+        f"Language: {data['language']}\n\nPROJECT INPUT:\n{context}",
+        temperature=0.85, max_tokens=max_tokens,
+    )
+
+    # Subsection 2: Technical Approach (sees Business Context)
+    technical = llm.call(
+        prompts.PD_TECHNICAL_APPROACH,
+        f"Language: {data['language']}\n\nPROJECT INPUT:\n{context}"
+        f"\n\nBUSINESS CONTEXT ALREADY WRITTEN:\n{business}",
+        temperature=0.85, max_tokens=max_tokens,
+    )
+
+    # Subsection 3: Scope & Deliverables (sees Business + Technical)
+    scope = llm.call(
+        prompts.PD_SCOPE_DELIVERABLES,
+        f"Language: {data['language']}\n\nPROJECT INPUT:\n{context}"
+        f"\n\nPREVIOUS SUBSECTIONS:\n{business}\n\n{technical}",
+        temperature=0.85, max_tokens=max_tokens,
+    )
+
+    # Subsection 4: Risks & Mitigations (sees all previous)
+    risks = llm.call(
+        prompts.PD_RISKS,
+        f"Language: {data['language']}\n\nPROJECT INPUT:\n{context}"
+        f"\n\nPREVIOUS SUBSECTIONS:\n{business}\n\n{technical}\n\n{scope}",
+        temperature=0.85, max_tokens=max_tokens,
+    )
+
+    # Assemble with section heading
+    lang = data["language"]
+    heading = "# 2. Descrição do Projeto" if lang == "Portuguese" else "# 2. Project Description"
+    return f"{heading}\n\n{business}\n\n{technical}\n\n{scope}\n\n{risks}"
 
 
 def _timeline_planning(data: dict, llm) -> str:

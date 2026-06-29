@@ -20,7 +20,11 @@ src/
     ├── helpers.py                # read_prompt(), strip_code_fence()
     ├── prompts/                  # LLM instruction files (*.txt), auto-discovered by config.py
     │   ├── system_prompt.txt
-    │   ├── project_description.txt
+    │   ├── project_description.txt  # Lightweight header (section number/title only)
+    │   ├── pd_business_context.txt  # Chained subsection 1 — business strategist
+    │   ├── pd_technical_approach.txt # Chained subsection 2 — solutions architect
+    │   ├── pd_scope_deliverables.txt # Chained subsection 3 — delivery manager
+    │   ├── pd_risks.txt             # Chained subsection 4 — risk analyst
     │   ├── executive_summary.txt
     │   ├── exec_summary_presentation.txt
     │   ├── timeline_and_planning.txt
@@ -60,7 +64,7 @@ src/
 `generate_proposal()` runs in three explicit phases:
 
 **Phase 1 — LLM sections** (computed in dependency order):
-1. `_project_description` — builds prompt, appends enabled frameworks via `append_frameworks()`, optional GenOS second pass
+1. `_project_description` — 4 chained LLM calls (Business Context → Technical Approach → Scope & Deliverables → Risks), each sees prior subsections; GenOS context and frameworks injected into input; extended mode doubles max_tokens
 2. `_timeline_planning`
 3. `_daredata_team`
 4. `_requirements` — skipped entirely (no LLM call) when `client_expectations` is empty

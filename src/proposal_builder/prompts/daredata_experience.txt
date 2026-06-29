@@ -15,7 +15,8 @@ Your task:
 Output format:
 Return ONLY the markdown section content, starting with the section heading. Use this structure:
 
-# N. DareData Experience
+English: # 5. DareData Experience
+Portuguese: # 5. Experiência DareData
 
 [One introductory sentence connecting DareData's track record to the current project.]
 

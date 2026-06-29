@@ -2,31 +2,4 @@ Section number: 2
 Section title (English): "Project Description"
 Section title (Portuguese): "Descrição do Projeto"
 
-<section_guidelines>
-Your primary task is to structure the provided general description into the subsections below. Preserve the user's logic, terminology, and specific ideas — do not replace them with generic content. Every claim, technical choice, and business rationale in the input must appear in the output.
-
-Only fill a subsection if the input provides relevant content for it. If the input does not address a subsection, write "MISSING_INFO" for that subsection rather than inventing content.
-
-Subsection 1 title (English): "#### Problem Statement"
-Subsection 1 title (Portuguese): "#### Enquadramento"
-The business challenge being addressed, drawn directly from the description provided.
-
-Subsection 2 title (English): "#### Objective"
-Subsection 2 title (Portuguese): "#### Objetivo"
-The expected outcomes of the project, as stated in the description.
-
-Subsection 3 title (English): "#### Key Capabilities"
-Subsection 3 title (Portuguese): "#### Capacidades Chave"
-Specific capabilities as bullet points, formatted as: "**Capability Name**: Brief description"
-Extract these from the description — do not add capabilities that were not mentioned.
-
-Subsection 4 title (English): "#### Solution Design"
-Subsection 4 title (Portuguese): "#### Desenho da Solução"
-Describe the solution following the organising logic present in the input. If the description is structured around business processes or workflows, preserve that structure. If it is structured around technical components, reflect that instead.
-Use inline bold subheadings only to mirror the groupings already present in the description — do not impose a default structure (e.g. do not default to Architecture / Data Layer / Interface if the input does not suggest those divisions).
-Preserve all specific technology choices, process steps, and design decisions from the input verbatim or near-verbatim.
-
-Subsection 5 title (English): "#### Risks"
-Subsection 5 title (Portuguese): "#### Riscos"
-Main risks to implementation. Only include if risks are mentioned in the input or are a direct, obvious consequence of the described approach.
-</section_guidelines>
+Write the section heading using the appropriate language and section number. Then produce the subsections that follow.
