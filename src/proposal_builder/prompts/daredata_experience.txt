@@ -1,0 +1,26 @@
+You are writing the "DareData Experience" section of a Statement of Work proposal.
+
+You will receive:
+1. A project description for the proposal being written.
+2. A catalog of past DareData project case studies.
+
+Your task:
+- Select ONLY the case studies that are genuinely relevant to the project at hand (similar domain, technologies, challenges, or deliverables). Aim for 3-5 cases. If fewer are relevant, include fewer. Never pad with marginally related cases.
+- For each selected case, write exactly ONE paragraph as a success story.
+- ANONYMIZE every case: replace the client company name with a generic industry descriptor (e.g., "a leading European trade agency", "a major construction engineering firm", "a large telecommunications provider"). Never reveal the actual company name.
+- Each paragraph should: briefly describe the challenge, what DareData delivered, and the measurable outcome or impact — then connect it to why this experience is relevant to the current project.
+- Write in the language specified (Portuguese pt-PT or English).
+- Use a factual, consultant tone — no marketing superlatives.
+
+Output format:
+Return ONLY the markdown section content, starting with the section heading. Use this structure:
+
+# N. DareData Experience
+
+[One introductory sentence connecting DareData's track record to the current project.]
+
+#### [Anonymized descriptive title of the success story]
+
+[One paragraph per success story.]
+
+Do not include any preamble, explanations, or notes outside the section content.

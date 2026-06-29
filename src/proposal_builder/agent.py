@@ -14,10 +14,15 @@ from __future__ import annotations
 
 import json
 
+from pathlib import Path
+
 from config import prompts
+from proposal_builder.case_parser import parse_cases, build_compact_catalog
 from proposal_builder.frameworks import append_frameworks
 from proposal_builder.llm_caller import get_llm
 from proposal_builder.static_sections import get_pricing, get_sifide, get_work_agreement
+
+_STORYTELLING_PATH = Path(__file__).resolve().parent.parent.parent / "Project_Storytelling.md"
 
 
 # ---------------------------------------------------------------------------
@@ -32,6 +37,7 @@ def generate_proposal(data: dict) -> str:
     timeline = _timeline_planning(data, llm)
     team = _daredata_team(data, llm)
     requirements = _requirements(data, llm)
+    experience = _daredata_experience(data, project_desc, llm)
     exec_summary = _executive_summary(data, project_desc, llm)
     exec_presentation = _exec_summary_presentation(data, project_desc, llm)
 
@@ -47,6 +53,7 @@ def generate_proposal(data: dict) -> str:
         exec_summary,
         project_desc,
         timeline,
+        experience,
         team,
         requirements,
         pricing,
@@ -134,6 +141,21 @@ def _build_gen_os_template(data: dict, prompts) -> str:
         parts.append(prompts.GEN_OS_SERVICE_PT if is_pt else prompts.GEN_OS_SERVICE)
     parts.append(prompts.GEN_OS_PLATFORM_PT if is_pt else prompts.GEN_OS_PLATFORM)
     return "\n\n".join(p for p in parts if p.strip())
+
+
+def _daredata_experience(data: dict, description: str, llm) -> str:
+    if not _STORYTELLING_PATH.exists():
+        return ""
+    cases = parse_cases(_STORYTELLING_PATH)
+    if not cases:
+        return ""
+    catalog = build_compact_catalog(cases)
+    user_content = (
+        f"Language: {data['language']}\n\n"
+        f"PROJECT DESCRIPTION:\n{description}\n\n"
+        f"CASE CATALOG:\n{catalog}"
+    )
+    return llm.call(prompts.SYSTEM_PROMPT, prompts.DAREDATA_EXPERIENCE + user_content)
 
 
 def _exec_summary_presentation(data: dict, description: str, llm) -> str:

@@ -12,6 +12,7 @@ src/
 ├── streamlit_helpers.py          # All Streamlit UI widgets and form rendering
 └── proposal_builder/
     ├── agent.py                  # Thin orchestrator — phases 1-3, no inline prose
+    ├── case_parser.py            # Parses Project_Storytelling.md into structured cases
     ├── llm_caller.py             # LLMCaller class + get_llm() lazy singleton
     ├── frameworks.py             # FRAMEWORK_REGISTRY + append_frameworks()
     ├── static_sections.py        # get_pricing(), get_sifide(), get_work_agreement()
@@ -37,6 +38,7 @@ src/
     │   ├── gen_os_service_pt.txt
     │   ├── mlops.txt
     │   ├── devops.txt
+    │   ├── daredata_experience.txt
     │   ├── llmops.txt
     │   └── wow.txt
     └── templates/                # Static output content (*.md / *.json), auto-discovered
@@ -62,8 +64,9 @@ src/
 2. `_timeline_planning`
 3. `_daredata_team`
 4. `_requirements` — skipped entirely (no LLM call) when `client_expectations` is empty
-5. `_executive_summary` — must run after `_project_description` (uses its output)
-6. `_exec_summary_presentation` — also depends on `_project_description`
+5. `_daredata_experience` — parses `Project_Storytelling.md` via `case_parser.py`, selects relevant cases, writes anonymized success stories; depends on `_project_description`
+6. `_executive_summary` — must run after `_project_description` (uses its output)
+7. `_exec_summary_presentation` — also depends on `_project_description`
 
 **Phase 2 — Static sections** (no LLM, loaded from `templates/`):
 - `get_pricing(project_type, language)`
@@ -72,8 +75,8 @@ src/
 
 **Phase 3 — Assembly** (document/reader order, empty sections auto-filtered):
 ```
-exec_summary → project_desc → timeline → team → requirements →
-pricing → sifide → work_agreement → exec_presentation
+exec_summary → project_desc → timeline → experience → team →
+requirements → pricing → sifide → work_agreement → exec_presentation
 ```
 
 Every LLM call goes through a single abstraction in `llm_caller.py`:
