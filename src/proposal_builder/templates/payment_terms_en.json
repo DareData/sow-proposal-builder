@@ -1,5 +1,5 @@
 {
-  "Closed Project": "Payment of 30% on acceptance of the proposal, 30% upon user testing, and 40% upon production deployment",
-  "GenOS": "CAPEX: Payment of 30% on acceptance of the proposal, 30% upon user testing, and 40% upon production deployment\n\nOPEX (36-month contract): Monthly Payment / Annual Payment (5% discount)",
+  "Closed Project": "Payment of 30% on acceptance of the proposal, 40% upon user testing, and 30% upon production deployment",
+  "GenOS": "CAPEX: Payment of 30% on acceptance of the proposal, 40% upon user testing, and 30% upon production deployment\n\nOPEX (36-month contract): Monthly Payment / Annual Payment (5% discount), starting 3 weeks after user testing",
   "Co-Creation": "Payment based on work timesheets"
 }
